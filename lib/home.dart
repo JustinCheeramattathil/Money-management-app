@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            '₹1000.0',
+                            '₹10000.0',
                             style: TextStyle(
                                 fontSize: 40,
                                 color: Colors.white,
