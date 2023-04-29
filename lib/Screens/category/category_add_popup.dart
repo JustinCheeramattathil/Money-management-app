@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../db/category/category_db.dart';
@@ -8,12 +10,16 @@ ValueNotifier<CategoryType> selectedCategoryNotifier =
 
 Future<void> showCategoryAddPopup(BuildContext context) async {
   final _nameEditingController = TextEditingController();
+
   showDialog(
     context: context,
     builder: (ctx) {
       String title;
       return SimpleDialog(
-        title: const Text('Add Category'),
+        title: const Text(
+          'Add Category',
+          style: TextStyle(color: Colors.teal),
+        ),
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -35,21 +41,33 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: ElevatedButton(
-                onPressed: () {
-                  final _name = _nameEditingController.text;
-                  if (_name.isEmpty) {
-                    return;
-                  }
-                  final _type = selectedCategoryNotifier.value;
-                  final _Category = CategoryModel(
-                      id: DateTime.now().millisecondsSinceEpoch.toString(),
-                      name: _name,
-                      type: _type);
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.teal)),
+              onPressed: () {
+                final _name = _nameEditingController.text;
+                final check = CategoryDB
+                    .instance.incomeCategoryListListener.value
+                    .where((element) => element.name.contains(_name));
+                log(check.toString());
+                if (check.isNotEmpty) {
+                  return;
+                }
+                if (_name.isEmpty) {
+                  return;
+                }
 
-                  CategoryDB.instance.insertCategory(_Category);
-                  Navigator.of(ctx).pop();
-                },
-                child: Text('Add')),
+                final _type = selectedCategoryNotifier.value;
+                final _Category = CategoryModel(
+                    id: DateTime.now().millisecondsSinceEpoch.toString(),
+                    name: _name,
+                    type: _type);
+
+                CategoryDB.instance.insertCategory(_Category);
+                Navigator.of(ctx).pop();
+              },
+              child: Text('Add'),
+            ),
           )
         ],
       );
@@ -86,7 +104,10 @@ class RadioButton extends StatelessWidget {
                     selectedCategoryNotifier.notifyListeners();
                   });
             }),
-        Text(title)
+        Text(
+          title,
+          style: TextStyle(color: Colors.teal),
+        )
       ],
     );
   }

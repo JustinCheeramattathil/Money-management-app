@@ -15,7 +15,7 @@ class Intro1 extends StatelessWidget {
             height: 380,
             width: 450,
             decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Colors.grey, Colors.white]),
+                gradient: LinearGradient(colors: [Colors.yellow, Colors.white]),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50))),

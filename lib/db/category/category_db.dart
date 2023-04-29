@@ -28,7 +28,6 @@ class CategoryDB implements CategoryDbFunctions {
   @override
   Future<void> insertCategory(CategoryModel value) async {
     final _categoryDB = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
-
     await _categoryDB.put(value.id, value);
 
     refreshUI();

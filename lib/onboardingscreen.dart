@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'Screens/home/home.dart';
+import 'Screens/home/rootpage.dart';
 import 'Screens/intro_page_1.dart';
 import 'Screens/intro_page_2.dart';
 
@@ -48,10 +49,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SmoothPageIndicator(controller: _controller, count: 2),
                 onLastPage
                     ? GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool('check', true);
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return HomeScreen();
+                            return RootPage();
                           }));
                         },
                         child: Text('Done'))

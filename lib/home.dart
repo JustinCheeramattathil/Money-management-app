@@ -1,224 +1,240 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
-class HomePage extends StatelessWidget {
+import 'Account/balance.dart';
+import 'Screens/home/rootpage.dart';
+import 'Screens/search/search.dart';
+import 'Screens/transaction/edit_transaction.dart';
+import 'Screens/transaction/view_Transaction.dart';
+import 'db/category/transactions/transaction_db.dart';
+import 'drawer/drawerpage.dart';
+import 'models/category/category_model.dart';
+import 'models/transaction/transaction_model.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   static ValueNotifier<int> selectedIndexNotifier = ValueNotifier(0);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    TransactionDB.instance.refreshAll();
+    BalanceAmount();
     var time = DateTime.now();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.teal,
-        body: Column(
-          children: [
-            Container(
-              height: 400,
-              width: 400,
+        appBar: AppBar(
+          title: Text(
+            'GoWalleT',
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+          ),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.yellow[300],
+          elevation: 0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Search()));
+                  },
+                  icon: Icon(IconlyLight.search)),
+            )
+          ],
+        ),
+        drawer: DrawerPage(),
+        backgroundColor: Colors.yellow[300],
+        body: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(40),
-                    bottomRight: Radius.circular(40)),
-                // gradient: LinearGradient(
-                //     colors: [Color.fromARGB(176, 17, 151, 21), Colors.blue])
-                color: Colors.teal.shade300,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.9),
+                    spreadRadius: 2,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(60),
+                gradient: LinearGradient(
+                    colors: [Colors.yellow, Colors.white, Colors.yellow]),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                  top: 80,
+                  top: 50,
                 ),
                 child: Container(
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            DateFormat("dd-MMMM-yyyy").format(time),
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-
-                          // SizedBox(
-                          //   height: 400,
-                          // ),
-                          // Container(
-                          //   height: 100,
-                          //   width: 100,
-                          //   decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(10),
-                          //       color: Colors.green),
-                          // ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          // Container(
-                          //   height: 100,
-                          //   width: 100,
-                          //   decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(10),
-                          //       color: Colors.red),
-                          // ),
-                          Text(
-                            'Justin',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12, right: 12),
-                        child: Divider(
-                          thickness: 2,
-                          indent: 3,
-                          endIndent: 3,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 28,
-                      ),
-                      Column(
-                        children: const [
-                          Text(
-                            'Account Balance',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            '₹10000.0',
-                            style: TextStyle(
-                                fontSize: 40,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.030,
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        decoration: BoxDecoration(),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // SizedBox(
-                            //   height: 400,
-                            // ),
-                            Container(
-                              height: 80,
-                              width: 180,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color.fromRGBO(255, 255, 255, 0.302)),
-                              child: Row(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        height: 60,
-                                        width: 60,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(18),
-                                            color: Colors.grey.shade300),
-                                        child: const Icon(
-                                          Icons.arrow_upward,
-                                          color: Colors.green, size: 40,
-
-                                          ///,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: const [
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "Income",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black),
-                                          ),
-                                          Text(
-                                            "2000",
-                                            style: TextStyle(
-                                                fontSize: 25,
-                                                color: Colors.black),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                            Icon(IconlyLight.calendar),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              DateFormat("dd-MMMM-yyyy").format(time),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
+                          ],
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 12, right: 12),
+                        child: SizedBox(
+                          height: 10,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 13,
+                      ),
+                      ValueListenableBuilder(
+                          valueListenable: totalNotifier,
+                          builder: (context, value, child) {
+                            return Column(
+                              children: [
+                                Text(
+                                  'Balance',
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black),
+                                ),
+                                SizedBox(
+                                  height: 9,
+                                ),
+                                Text(
+                                  totalNotifier.value.toString(),
+                                  style: TextStyle(
+                                      fontSize: 40,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            );
+                          }),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Container(
-                              height: 80,
-                              width: 180,
+                              height: 60,
+                              width: 60,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white30),
-                              child: Row(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        height: 60,
-                                        width: 60,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(18),
-                                            color: Colors.grey.shade300),
-                                        child: const Icon(
-                                          Icons.arrow_downward,
-                                          color: Colors.red,
-                                          size: 40,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: const [
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "Expense",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black),
-                                          ),
-                                          Text(
-                                            "5000",
-                                            style: TextStyle(
-                                                fontSize: 25,
-                                                color: Colors.black),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                ],
+                                  borderRadius: BorderRadius.circular(40),
+                                  color: Colors.transparent),
+                              child: const Icon(
+                                Icons.arrow_downward,
+                                color: Colors.green,
+                                size: 40,
                               ),
+                            ),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Income",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                ValueListenableBuilder(
+                                    valueListenable: incomeNotifier,
+                                    builder: (context, value, child) {
+                                      return Text(
+                                        incomeNotifier.value.toString(),
+                                        style: TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: 18,
+                                            color: Colors.grey),
+                                      );
+                                    }),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Expense",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w800),
+                                    ),
+                                    ValueListenableBuilder(
+                                        valueListenable: expenseNotifier,
+                                        builder: (context, value, child) {
+                                          return Text(
+                                            expenseNotifier.value.toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.grey),
+                                          );
+                                        }),
+                                  ],
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  height: 60,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(40),
+                                      color: Colors.transparent),
+                                  child: const Icon(
+                                    Icons.arrow_upward,
+                                    color: Colors.red,
+                                    size: 40,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -228,41 +244,211 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8),
-              child: Container(
-                height: 35,
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(15.0)),
-                child: TabBar(
-                    indicator: BoxDecoration(
-                        // gradient:
-                        //     LinearGradient(colors: [Colors.green, Colors.blue]),
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(15.0)),
-                    tabs: const [
-                      Tab(
-                        text: 'Month',
-                      ),
-                      Tab(
-                        text: 'Week',
-                      ),
-                      Tab(
-                        text: 'Day',
-                      ),
-                      // Tab(
-                      //   text: 'chats',
-                      // ),
-                    ]),
+          ),
+          const SizedBox(height: 0),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: Text(
+                  'Recent Transactions',
+                  style: TextStyle(color: Colors.black38),
+                ),
               ),
-            )
-          ],
-        ),
+              SizedBox(width: 135),
+              ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.yellow),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
+                    elevation: MaterialStateProperty.all<double>(10),
+                  ),
+                  onPressed: () {
+                    RootPage.selectedIndexNotifier.value = 1;
+                  },
+                  child: Text('View All')),
+            ],
+          ),
+          ValueListenableBuilder(
+            valueListenable: TransactionDB.instance.transactionListNotifietr,
+            builder: (BuildContext context, List<TransactionModel> newList,
+                Widget? _) {
+              return Expanded(
+                  child: newList.isNotEmpty
+                      ? ListView.separated(
+                          padding: const EdgeInsets.all(10),
+                          itemBuilder: (context, index) {
+                            final _value = newList[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            View_Transaction()));
+                              },
+                              child: Slidable(
+                                startActionPane: ActionPane(
+                                    motion: const StretchMotion(),
+                                    children: [
+                                      SlidableAction(
+                                        borderRadius: BorderRadius.circular(30),
+                                        padding: EdgeInsets.all(8),
+                                        backgroundColor: Colors.yellow,
+                                        foregroundColor: Colors.black,
+                                        icon: IconlyLight.edit,
+                                        label: 'Edit',
+                                        onPressed: (context) {
+                                          final model = TransactionModel(
+                                              purpose: _value.purpose,
+                                              amount: _value.amount,
+                                              date: _value.date,
+                                              category: _value.category,
+                                              type: _value.type);
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EditTransaction(
+                                                        model: model,
+                                                      )));
+                                        },
+                                      ),
+                                      SlidableAction(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          spacing: 8,
+                                          backgroundColor: Colors.yellow,
+                                          foregroundColor: Colors.black,
+                                          icon: IconlyLight.delete,
+                                          label: 'Delete',
+                                          onPressed: (context) {
+                                            _value;
+
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: Text('Delete'),
+                                                    content: Text(
+                                                        'Are you sure?Do you want to delete this transaction?'),
+                                                    actions: [
+                                                      TextButton(
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child:
+                                                              Text('Cancel')),
+                                                      TextButton(
+                                                          onPressed: () {
+                                                            TransactionDB
+                                                                .instance
+                                                                .deleteTransaction(
+                                                                    _value.id!);
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child: Text('Ok'))
+                                                    ],
+                                                  );
+                                                });
+                                          })
+                                    ]),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: _value.type == CategoryType.income
+                                          ? Colors.white
+                                          : Colors.white,
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(colors: [
+                                            Colors.yellow,
+                                            Colors.white
+                                          ]),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: ListTile(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        leading: Text(
+                                          parseDate(_value.date),
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                        trailing: Column(
+                                          children: [
+                                            Text(
+                                              ' ${_value.category.name}',
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                                color: _value.type ==
+                                                        CategoryType.income
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              ),
+                                            ),
+                                            Text(
+                                              "₹ ${_value.amount}",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                                color: _value.type ==
+                                                        CategoryType.income
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: 10,
+                            );
+                          },
+                          itemCount: newList.length,
+                        )
+                      : Center(
+                          child: Container(
+                              height: 130,
+                              width: 130,
+                              child: Lottie.asset('images/noresult.json')),
+                        ));
+            },
+          ),
+        ]),
       ),
     );
+  }
+
+  String parseDate(DateTime date) {
+    final _date = DateFormat.MMMd().format(date);
+    final _splitedDate = _date.split(' ');
+    return '${_splitedDate.last}\n${_splitedDate.first}';
   }
 }

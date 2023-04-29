@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../db/category/category_db.dart';
+import '../home/rootpage.dart';
 import 'category_add_popup.dart';
 import 'expense_category.dart';
 import 'income_category.dart';
@@ -25,24 +26,74 @@ class _Screen_CategoryState extends State<Screen_Category>
 
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showCategoryAddPopup(context),
-        child: Icon(Icons.add),
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              RootPage.selectedIndexNotifier.value = 0;
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back_ios)),
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 85),
+          child: Text(
+            'Categories',
+            style: TextStyle(color: Colors.teal),
+          ),
+        ),
+        elevation: 0,
+      ),
+      backgroundColor: Colors.white,
+      floatingActionButton: Container(
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          )
+        ]),
+        child: FloatingActionButton(
+            onPressed: () => showCategoryAddPopup(context),
+            child: Icon(Icons.add),
+            backgroundColor: Colors.teal,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(17))),
       ),
       body: Column(
         children: [
-          TabBar(
-              controller: _tabController,
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey,
-              tabs: [
-                Tab(
-                  text: 'Income',
-                ),
-                Tab(
-                  text: 'Expense',
-                )
-              ]),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.9),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0)),
+              child: TabBar(
+                  indicator: BoxDecoration(
+                      color: Colors.teal,
+                      borderRadius: BorderRadius.circular(15.0)),
+                  controller: _tabController,
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.grey,
+                  tabs: [
+                    Tab(
+                      text: 'Income',
+                    ),
+                    Tab(
+                      text: 'Expense',
+                    )
+                  ]),
+            ),
+          ),
           Expanded(
               child: TabBarView(
             controller: _tabController,

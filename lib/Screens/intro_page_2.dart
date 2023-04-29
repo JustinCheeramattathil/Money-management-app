@@ -12,7 +12,7 @@ class Intro2 extends StatelessWidget {
         decoration: BoxDecoration(gradient: LinearGradient(
             begin: Alignment.topLeft,
             // end: Alignment.bottomRight,
-            colors: [Colors.grey, Colors.white])),
+            colors: [Colors.yellow, Colors.white])),
         child: Column(
           children: [
             Center(
@@ -25,7 +25,7 @@ class Intro2 extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     // color: Colors.amber,
                   ),
-                  child: Lottie.asset('images/money.json'),
+                  child: Lottie.asset('images/money2.json'),
                 ),
               ),
             ),

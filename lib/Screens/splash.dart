@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../onboardingscreen.dart';
+import 'home/rootpage.dart';
 
 class Splash extends StatefulWidget {
   const Splash({
@@ -30,7 +34,7 @@ class _SplashState extends State<Splash> {
         decoration: BoxDecoration(color: Colors.white),
         child: Center(
           child: Container(
-            child: Lottie.asset('images/lottie1.json'),
+            child: Lottie.asset('images/loading3.json'),
             height: 300,
             width: 300,
           ),
@@ -40,8 +44,11 @@ class _SplashState extends State<Splash> {
   }
 
   Future<void> goToHome() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool a = prefs.getBool('check') ?? false;
+    log(a.toString());
     await Future.delayed(Duration(seconds: 5));
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => OnBoardingScreen()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => a ? RootPage() : const OnBoardingScreen()));
   }
 }

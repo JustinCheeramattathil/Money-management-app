@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(primarySwatch: Colors.grey),
       debugShowCheckedModeBanner: false,
       home: Splash(),
     );
