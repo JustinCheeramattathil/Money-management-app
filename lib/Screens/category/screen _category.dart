@@ -32,18 +32,22 @@ class _Screen_CategoryState extends State<Screen_Category>
               RootPage.selectedIndexNotifier.value = 0;
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back_ios)),
-        backgroundColor: Colors.white,
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            )),
+        backgroundColor: Colors.yellow[300],
         title: Padding(
           padding: const EdgeInsets.only(left: 85),
           child: Text(
             'Categories',
-            style: TextStyle(color: Colors.teal),
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
           ),
         ),
         elevation: 0,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.yellow[300],
       floatingActionButton: Container(
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
@@ -56,7 +60,7 @@ class _Screen_CategoryState extends State<Screen_Category>
         child: FloatingActionButton(
             onPressed: () => showCategoryAddPopup(context),
             child: Icon(Icons.add),
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.yellow,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(17))),
       ),
@@ -79,7 +83,7 @@ class _Screen_CategoryState extends State<Screen_Category>
                   borderRadius: BorderRadius.circular(15.0)),
               child: TabBar(
                   indicator: BoxDecoration(
-                      color: Colors.teal,
+                      color: Colors.yellow,
                       borderRadius: BorderRadius.circular(15.0)),
                   controller: _tabController,
                   labelColor: Colors.black,

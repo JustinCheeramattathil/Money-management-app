@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     TransactionDB.instance.refreshAll();
-    BalanceAmount();
+    balanceAmount();
     var time = DateTime.now();
 
     return DefaultTabController(
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.grey.withOpacity(0.9),
                     spreadRadius: 2,
                     blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: Offset(0, 3),
                   ),
                 ],
                 borderRadius: BorderRadius.circular(60),
@@ -290,8 +290,12 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            View_Transaction()));
+                                        builder: (context) => View_Transaction(
+                                              amount: _value.amount,
+                                              category: _value.category.name,
+                                              description: _value.purpose,
+                                              date: _value.date,
+                                            )));
                               },
                               child: Slidable(
                                 startActionPane: ActionPane(

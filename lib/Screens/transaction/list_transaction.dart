@@ -9,7 +9,6 @@ import '../../db/category/transactions/transaction_db.dart';
 import '../../models/category/category_model.dart';
 import '../../models/transaction/transaction_model.dart';
 import '../add_transaction/add_transaction.dart';
-import '../home/rootpage.dart';
 import 'edit_transaction.dart';
 import 'view_Transaction.dart';
 
@@ -29,12 +28,7 @@ class _Screen_TransactionState extends State<Screen_Transaction> {
       appBar: AppBar(
         backgroundColor: Colors.yellow[300],
         elevation: 0,
-        leading: IconButton(
-            onPressed: () => {RootPage.selectedIndexNotifier.value = 0},
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            )),
+        automaticallyImplyLeading: false,
         title: Text(
           'Transactions',
           style: TextStyle(
@@ -84,7 +78,13 @@ class _Screen_TransactionState extends State<Screen_Transaction> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                View_Transaction()));
+                                                View_Transaction(
+                                                  amount: _value.amount,
+                                                  category:
+                                                      _value.category.name,
+                                                  description: _value.purpose,
+                                                  date: _value.date,
+                                                )));
                                   },
                                   child: Slidable(
                                     startActionPane: ActionPane(

@@ -35,6 +35,22 @@ class _AddTransactionState extends State<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.yellow[300],
+          title: Text(
+            'New Transaction',
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+          ),
+          centerTitle: true,
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () => {RootPage.selectedIndexNotifier.value = 1},
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              )),
+        ),
         backgroundColor: Colors.yellow[300],
         body: SingleChildScrollView(
           child: Container(

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class View_Transaction extends StatefulWidget {
-  const View_Transaction({super.key});
+class View_Transaction extends StatelessWidget {
+  double amount;
+  String category;
+  String description;
+  DateTime date;
 
-  @override
-  State<View_Transaction> createState() => _View_TransactionState();
-}
+  View_Transaction(
+      {super.key,
+      required this.amount,
+      required this.category,
+      required this.description,
+      required this.date});
 
-class _View_TransactionState extends State<View_Transaction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +51,7 @@ class _View_TransactionState extends State<View_Transaction> {
                       size: 30,
                     ),
                     title: Text(
-                      'Notes :Book ordering',
+                      'Notes :${description}',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
@@ -60,7 +66,7 @@ class _View_TransactionState extends State<View_Transaction> {
                       size: 30,
                     ),
                     title: Text(
-                      'Amount :2000',
+                      'Amount :${amount}',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
@@ -75,7 +81,7 @@ class _View_TransactionState extends State<View_Transaction> {
                       size: 30,
                     ),
                     title: Text(
-                      'Date :23-04-2023',
+                      'Date :${parseDate(date)}',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
@@ -90,7 +96,7 @@ class _View_TransactionState extends State<View_Transaction> {
                       size: 30,
                     ),
                     title: Text(
-                      'Category :Income',
+                      'Category :${category}',
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
@@ -100,5 +106,11 @@ class _View_TransactionState extends State<View_Transaction> {
             ),
           ),
         ));
+  }
+
+  String parseDate(DateTime date) {
+    final _date = DateFormat.MMMd().format(date);
+    final _splitedDate = _date.split(' ');
+    return '${_splitedDate.last}${_splitedDate.first}';
   }
 }

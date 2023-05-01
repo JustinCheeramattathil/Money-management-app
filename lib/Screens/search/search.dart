@@ -70,8 +70,12 @@ class _SearchState extends State<Search> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const View_Transaction()));
+                                    builder: (context) => View_Transaction(
+                                          amount: _value.amount,
+                                          category: _value.category.name,
+                                          description: _value.purpose,
+                                          date: _value.date,
+                                        )));
                           },
                           child: Slidable(
                             startActionPane: ActionPane(

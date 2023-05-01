@@ -14,6 +14,17 @@ class ResetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.yellow[300],
+          title: Text('Reset',
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black)),
+          elevation: 0,
+          centerTitle: true,
+        ),
         backgroundColor: Colors.yellow[300],
         body: Center(
           child: Container(
@@ -48,33 +59,61 @@ class ResetPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30)),
                         child: ElevatedButton(
-                            onPressed: () {}, child: Text('Cancel'))),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Cancel'))),
                     Container(
                         child: ElevatedButton(
                             onPressed: () async {
-                              SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              await prefs.clear();
-                              SharedPreferences tectcontrol =
-                                  await SharedPreferences.getInstance();
-                              await tectcontrol.clear();
-                              final transationDb =
-                                  await Hive.openBox<TransactionModel>(
-                                      'transactio-db');
-                              final categorydb =
-                                  await Hive.openBox<CategoryModel>(
-                                      'category_database');
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Delete'),
+                                      content: Text(
+                                          'Are you sure?Do you want to reset entire data'),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Cancel')),
+                                        TextButton(
+                                            onPressed: () async {
+                                              SharedPreferences prefs =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              await prefs.clear();
+                                              SharedPreferences tectcontrol =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              await tectcontrol.clear();
+                                              final transationDb = await Hive
+                                                  .openBox<TransactionModel>(
+                                                      'transactio-db');
+                                              final categorydb = await Hive
+                                                  .openBox<CategoryModel>(
+                                                      'category_database');
 
-                              categorydb.clear();
-                              transationDb.clear();
-                              incomeNotifier = ValueNotifier(0);
-                              expenseNotifier = ValueNotifier(0);
-                              totalNotifier = ValueNotifier(0);
+                                              categorydb.clear();
+                                              transationDb.clear();
+                                              incomeNotifier = ValueNotifier(0);
+                                              expenseNotifier =
+                                                  ValueNotifier(0);
+                                              totalNotifier = ValueNotifier(0);
 
-                              Navigator.of(context)
-                                  .pushReplacement(MaterialPageRoute(
-                                builder: (context) => const Splash(),
-                              ));
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                      MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Splash(),
+                                              ));
+                                            },
+                                            child: Text('Ok'))
+                                      ],
+                                    );
+                                  });
                             },
                             child: Text('Reset')))
                   ],

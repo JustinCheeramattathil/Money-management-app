@@ -7,7 +7,7 @@ ValueNotifier<double> incomeNotifier = ValueNotifier(0);
 ValueNotifier<double> expenseNotifier = ValueNotifier(0);
 ValueNotifier<double> totalNotifier = ValueNotifier(0);
 
-Future<void> BalanceAmount() async {
+Future<void> balanceAmount() async {
   await TransactionDB.instance.accessTransactions().then((value) {
     expenseNotifier.value = 0;
     incomeNotifier.value = 0;

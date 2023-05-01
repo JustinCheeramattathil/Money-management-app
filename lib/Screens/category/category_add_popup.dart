@@ -16,9 +16,11 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
     builder: (ctx) {
       String title;
       return SimpleDialog(
-        title: const Text(
-          'Add Category',
-          style: TextStyle(color: Colors.teal),
+        title: Center(
+          child: const Text(
+            'Add Category',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         children: [
           Padding(
@@ -43,7 +45,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
             child: ElevatedButton(
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.teal)),
+                      MaterialStateProperty.all<Color>(Colors.yellow)),
               onPressed: () {
                 final _name = _nameEditingController.text;
                 final check = CategoryDB
@@ -106,7 +108,7 @@ class RadioButton extends StatelessWidget {
             }),
         Text(
           title,
-          style: TextStyle(color: Colors.teal),
+          style: TextStyle(color: Colors.black),
         )
       ],
     );
