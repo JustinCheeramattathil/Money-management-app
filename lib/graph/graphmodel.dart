@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import '../models/category/category_model.dart';
 import '../models/transaction/transaction_model.dart';
 
 class ChartDatas {
@@ -20,11 +19,11 @@ chartLogic(List<TransactionModel> model) {
   }
   for (var i = 0; i < model.length; i++) {
     value = model[i].amount.toDouble();
-    categoryname =
-        model[i].category.type == CategoryType.income ? 'Income' : 'Expense';
+    categoryname = model[i].category.name;
+    //  == CategoryType.income ? 'Income' : 'Expense';
     log(model[i].category.type.toString());
     for (var j = i + 1; j < model.length; j++) {
-      if (model[i].category == model[j].category) {
+      if (model[i].category.name == model[j].category.name) {
         value += model[j].amount;
         visited[j] = -1;
         log(value.toString());

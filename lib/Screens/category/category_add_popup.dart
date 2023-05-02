@@ -48,9 +48,12 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                       MaterialStateProperty.all<Color>(Colors.yellow)),
               onPressed: () {
                 final _name = _nameEditingController.text;
-                final check = CategoryDB
-                    .instance.incomeCategoryListListener.value
-                    .where((element) => element.name.contains(_name));
+                final check =
+                    selectedCategoryNotifier.value == CategoryType.income
+                        ? CategoryDB.instance.incomeCategoryListListener.value
+                            .where((element) => element.name.contains(_name))
+                        : CategoryDB.instance.expenseCategoryListListener.value
+                            .where((element) => element.name.contains(_name));
                 log(check.toString());
                 if (check.isNotEmpty) {
                   return;

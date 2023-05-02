@@ -6,9 +6,6 @@ import '../../Account/balance.dart';
 import '../../chart_function/chart_function.dart';
 import '../../graph/graphmodel.dart';
 
-// import '../../db/chart_function/graph_function.dart';
-// import '../../models/graph/chart.dart';
-
 class Statistics_Screen extends StatefulWidget {
   const Statistics_Screen({Key? key}) : super(key: key);
 

@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
+import '../../../models/category/category_model.dart';
 import '../../../models/transaction/transaction_model.dart';
 
 const TRANSACTION_DB_NAME = 'transactio-db';
@@ -22,6 +25,9 @@ class TransactionDB implements TransactionDbFunctions {
 
   ValueNotifier<List<TransactionModel>> transactionListNotifietr =
       ValueNotifier([]);
+  ValueNotifier<List<TransactionModel>> incomeListenable = ValueNotifier([]);
+  ValueNotifier<List<TransactionModel>> expenseListenable = ValueNotifier([]);
+  ValueNotifier<List<TransactionModel>> transationAll = ValueNotifier([]);
 
   @override
   Future<void> addTransaction(TransactionModel obj) async {
@@ -35,6 +41,19 @@ class TransactionDB implements TransactionDbFunctions {
     transactionListNotifietr.value.clear();
     transactionListNotifietr.value.addAll(_list);
     transactionListNotifietr.notifyListeners();
+    incomeListenable.value.clear();
+    expenseListenable.value.clear();
+    transationAll.value.clear();
+    await Future.forEach(transactionListNotifietr.value,
+        (TransactionModel transation) {
+      if (transation.category.type == CategoryType.income) {
+        incomeListenable.value.add(transation);
+        log(incomeListenable.value.length.toString());
+      } else if (transation.category.type == CategoryType.expense) {
+        expenseListenable.value.add(transation);
+      }
+      transationAll.value.add(transation);
+    });
   }
 
   @override
