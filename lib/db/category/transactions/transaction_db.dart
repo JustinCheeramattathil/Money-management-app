@@ -31,15 +31,15 @@ class TransactionDB implements TransactionDbFunctions {
 
   @override
   Future<void> addTransaction(TransactionModel obj) async {
-    final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
-    _db.put(obj.id, obj);
+    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    db.put(obj.id, obj);
   }
 
   Future<void> refreshAll() async {
-    final _list = await accessTransactions();
-    _list.sort((first, second) => second.date.compareTo(first.date));
+    final list = await accessTransactions();
+    list.sort((first, second) => second.date.compareTo(first.date));
     transactionListNotifietr.value.clear();
-    transactionListNotifietr.value.addAll(_list);
+    transactionListNotifietr.value.addAll(list);
     transactionListNotifietr.notifyListeners();
     incomeListenable.value.clear();
     expenseListenable.value.clear();
@@ -84,4 +84,10 @@ class TransactionDB implements TransactionDbFunctions {
         .where((element) => element.purpose.contains(text)));
     transactionListNotifietr.notifyListeners();
   }
+
+
+
+
+
+  
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
@@ -23,7 +21,7 @@ class _Screen_TransactionState extends State<Screen_Transaction>
   dynamic dropDownVale = 'All';
   @override
   void initState() {
-    log('gfkglf');
+
     dropDownVale = 'All';
     results.clear();
     results = TransactionDB().transationAll.value;

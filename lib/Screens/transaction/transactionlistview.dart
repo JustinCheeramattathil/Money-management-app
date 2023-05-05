@@ -82,7 +82,7 @@ class _DropdownListState extends State<TransationListView> {
                                 date: _value.date,
                                 category: _value.category,
                                 type: _value.type);
-                            Navigator.push(
+                            Navigator.push( 
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EditTransaction(

@@ -68,10 +68,6 @@ filterFunction() async {
 
   for (var element in list) {
     if (element.category.type == CategoryType.income) {
-      // log(element.category.type.toString());
-      // log(element.category.type == CategoryType.income
-      //     ? true.toString()
-      //     : false.toString());
       incomeNotifier1.value.add(element);
     } else if (element.category.type == CategoryType.expense) {
       expenseNotifier1.value.add(element);

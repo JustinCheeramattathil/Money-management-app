@@ -36,6 +36,7 @@ class _AddTransactionState extends State<AddTransaction> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.yellow[300],
           title: Text(
             'New Transaction',
@@ -44,12 +45,7 @@ class _AddTransactionState extends State<AddTransaction> {
           ),
           centerTitle: true,
           elevation: 0,
-          leading: IconButton(
-              onPressed: () => {RootPage.selectedIndexNotifier.value = 1},
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-              )),
+         
         ),
         backgroundColor: Colors.yellow[300],
         body: SingleChildScrollView(
@@ -120,117 +116,66 @@ class _AddTransactionState extends State<AddTransaction> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.yellow,
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.075,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
                           ),
-                          child: Theme(
-                            data: Theme.of(context).copyWith(
-                              colorScheme:
-                                  Theme.of(context).colorScheme.copyWith(
-                                        primary: Colors.black,
-                                      ),
-                            ),
-                            child: TextButton.icon(
-                              onPressed: () async {
-                                final _selectedDateTemp = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.now()
-                                      .subtract(const Duration(days: 30)),
-                                  lastDate: DateTime.now(),
-                                );
+                        ],
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.yellow,
+                      ),
+                      child: Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: Theme.of(context).colorScheme.copyWith(
+                                primary: Colors.black,
+                              ),
+                        ),
+                        child: TextButton.icon(
+                          onPressed: () async {
+                            final _selectedDateTemp = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now()
+                                  .subtract(const Duration(days: 30)),
+                              lastDate: DateTime.now(),
+                            );
 
-                                if (_selectedDateTemp == null) {
-                                  return;
-                                } else {
-                                  print(_selectedDate.toString());
-                                  setState(() {
-                                    _selectedDate = _selectedDateTemp;
-                                  });
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.calendar_month,
-                                color: Colors.black,
-                              ),
-                              label: Text(
-                                _selectedDate == null
-                                    ? 'Select Date'
-                                    : DateFormat("dd-MMMM-yyyy")
-                                        .format(_selectedDate!),
-                                style: const TextStyle(color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // SizedBox(width: 20),
-                        Container(
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                              color: Colors.yellow,
-                              // border: Border.all(color: Colors.black),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: DropdownButton<String>(
-                            underline: Container(),
-                            hint: const Text(
-                              'Select Category',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            value: _categoryID,
-                            items: (_selectedCategorytype == CategoryType.income
-                                    ? CategoryDB().incomeCategoryListListener
-                                    : CategoryDB().expenseCategoryListListener)
-                                .value
-                                .map((e) {
-                              return DropdownMenuItem(
-                                value: e.id,
-                                child: Text(
-                                  e.name,
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                onTap: () {
-                                  print(e.toString());
-                                  _selectedCategoryModel = e;
-                                },
-                              );
-                            }).toList(),
-                            onChanged: (selectedValue) {
-                              print(selectedValue);
+                            if (_selectedDateTemp == null) {
+                              return;
+                            } else {
+                              print(_selectedDate.toString());
                               setState(() {
-                                _categoryID = selectedValue;
+                                _selectedDate = _selectedDateTemp;
                               });
-                            },
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.calendar_month,
+                            color: Colors.black,
+                          ),
+                          label: Text(
+                            _selectedDate == null
+                                ? 'Select Date'
+                                : DateFormat("dd-MMMM-yyyy")
+                                    .format(_selectedDate!),
+                            style: const TextStyle(color: Colors.black),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    SizedBox(height: 50),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
+                          width: MediaQuery.of(context).size.width * 0.3,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.yellow,
@@ -267,6 +212,7 @@ class _AddTransactionState extends State<AddTransaction> {
                           width: 50,
                         ),
                         Container(
+                          width: MediaQuery.of(context).size.width * 0.3,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.yellow,
@@ -301,11 +247,58 @@ class _AddTransactionState extends State<AddTransaction> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
+                    SizedBox(height: 90),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.075,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                          color: Colors.yellow,
+                          // border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Center(
+                        child: DropdownButton<String>(
+                          underline: Container(),
+                          hint: const Text(
+                            'Select Category',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          value: _categoryID,
+                          items: (_selectedCategorytype == CategoryType.income
+                                  ? CategoryDB().incomeCategoryListListener
+                                  : CategoryDB().expenseCategoryListListener)
+                              .value
+                              .map((e) {
+                            return DropdownMenuItem(
+                              value: e.id,
+                              child: Text(
+                                e.name,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onTap: () {
+                                print(e.toString());
+                                _selectedCategoryModel = e;
+                              },
+                            );
+                          }).toList(),
+                          onChanged: (selectedValue) {
+                            print(selectedValue);
+                            setState(() {
+                              _categoryID = selectedValue;
+                            });
+                          },
+                        ),
+                      ),
                     ),
                     SizedBox(
-                      height: 300,
+                      height: 150,
                     ),
                     Center(
                       child: ElevatedButton(

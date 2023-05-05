@@ -23,7 +23,5 @@ Future<void> balanceAmount() async {
     totalNotifier.value = incomeNotifier.value - expenseNotifier.value;
   });
 
-  print(incomeNotifier.value);
-  print(expenseNotifier.value);
-  print(totalNotifier.value);
+ 
 }

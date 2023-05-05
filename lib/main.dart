@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'Screens/splash.dart';
-import 'db/category/category_db.dart';
 import 'models/category/category_model.dart';
 import 'models/transaction/transaction_model.dart';
 
 Future<void> main() async {
-  final obj1 = CategoryDB;
-  final obj2 = CategoryDB;
-
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 

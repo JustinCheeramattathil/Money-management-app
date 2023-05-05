@@ -79,168 +79,166 @@ class _HomePageState extends State<HomePage> {
                 ],
                 borderRadius: BorderRadius.circular(60),
                 gradient: LinearGradient(
-                    colors: [Colors.yellow, Colors.white, Colors.yellow]),
+                    colors: const [Colors.yellow, Colors.white, Colors.yellow]),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
                   top: 50,
                 ),
-                child: Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.030,
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        decoration: BoxDecoration(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(IconlyLight.calendar),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              DateFormat("dd-MMMM-yyyy").format(time),
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 18),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.030,
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      decoration: BoxDecoration(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(IconlyLight.calendar),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            DateFormat("dd-MMMM-yyyy").format(time),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 18),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12, right: 12),
-                        child: SizedBox(
-                          height: 10,
-                        ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SizedBox(
+                        height: 10,
                       ),
-                      const SizedBox(
-                        height: 13,
-                      ),
-                      ValueListenableBuilder(
-                          valueListenable: totalNotifier,
-                          builder: (context, value, child) {
-                            return Column(
-                              children: [
-                                Text(
-                                  'Balance',
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 9,
-                                ),
-                                Text(
-                                  totalNotifier.value.toString(),
-                                  style: TextStyle(
-                                      fontSize: 40,
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            );
-                          }),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(40),
-                                  color: Colors.transparent),
-                              child: const Icon(
-                                Icons.arrow_downward,
-                                color: Colors.green,
-                                size: 40,
+                    ),
+                    const SizedBox(
+                      height: 13,
+                    ),
+                    ValueListenableBuilder(
+                        valueListenable: totalNotifier,
+                        builder: (context, value, child) {
+                          return Column(
+                            children: [
+                              Text(
+                                'Balance',
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black),
                               ),
+                              SizedBox(
+                                height: 9,
+                              ),
+                              Text(
+                                totalNotifier.value.toString(),
+                                style: TextStyle(
+                                    fontSize: 40,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          );
+                        }),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: Colors.transparent),
+                            child: const Icon(
+                              Icons.arrow_downward,
+                              color: Colors.green,
+                              size: 40,
                             ),
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Income",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                                ValueListenableBuilder(
-                                    valueListenable: incomeNotifier,
-                                    builder: (context, value, child) {
-                                      return Text(
-                                        incomeNotifier.value.toString(),
-                                        style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            fontSize: 18,
-                                            color: Colors.grey),
-                                      );
-                                    }),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      "Expense",
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Income",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                              ValueListenableBuilder(
+                                  valueListenable: incomeNotifier,
+                                  builder: (context, value, child) {
+                                    return Text(
+                                      incomeNotifier.value.toString(),
                                       style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w800),
-                                    ),
-                                    ValueListenableBuilder(
-                                        valueListenable: expenseNotifier,
-                                        builder: (context, value, child) {
-                                          return Text(
-                                            expenseNotifier.value.toString(),
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.grey),
-                                          );
-                                        }),
-                                  ],
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(left: 10),
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40),
-                                      color: Colors.transparent),
-                                  child: const Icon(
-                                    Icons.arrow_upward,
-                                    color: Colors.red,
-                                    size: 40,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: 18,
+                                          color: Colors.grey),
+                                    );
+                                  }),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10,
                                   ),
+                                  Text(
+                                    "Expense",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  ValueListenableBuilder(
+                                      valueListenable: expenseNotifier,
+                                      builder: (context, value, child) {
+                                        return Text(
+                                          expenseNotifier.value.toString(),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.grey),
+                                        );
+                                      }),
+                                ],
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: Colors.transparent),
+                                child: const Icon(
+                                  Icons.arrow_upward,
+                                  color: Colors.red,
+                                  size: 40,
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -284,17 +282,17 @@ class _HomePageState extends State<HomePage> {
                       ? ListView.separated(
                           padding: const EdgeInsets.all(10),
                           itemBuilder: (context, index) {
-                            final _value = newList[index];
+                            final value = newList[index];
                             return GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => View_Transaction(
-                                              amount: _value.amount,
-                                              category: _value.category.name,
-                                              description: _value.purpose,
-                                              date: _value.date,
+                                              amount: value.amount,
+                                              category: value.category.name,
+                                              description: value.purpose,
+                                              date: value.date,
                                             )));
                               },
                               child: Slidable(
@@ -310,11 +308,11 @@ class _HomePageState extends State<HomePage> {
                                         label: 'Edit',
                                         onPressed: (context) {
                                           final model = TransactionModel(
-                                              purpose: _value.purpose,
-                                              amount: _value.amount,
-                                              date: _value.date,
-                                              category: _value.category,
-                                              type: _value.type);
+                                              purpose: value.purpose,
+                                              amount: value.amount,
+                                              date: value.date,
+                                              category: value.category,
+                                              type: value.type);
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -333,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                                           icon: IconlyLight.delete,
                                           label: 'Delete',
                                           onPressed: (context) {
-                                            _value;
+                                            value;
 
                                             showDialog(
                                                 context: context,
@@ -357,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                                                             TransactionDB
                                                                 .instance
                                                                 .deleteTransaction(
-                                                                    _value.id!);
+                                                                    value.id!);
                                                             Navigator.of(
                                                                     context)
                                                                 .pop();
@@ -374,13 +372,13 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: _value.type == CategoryType.income
+                                      color: value.type == CategoryType.income
                                           ? Colors.white
                                           : Colors.white,
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: [
+                                          gradient: LinearGradient(colors: const [
                                             Colors.yellow,
                                             Colors.white
                                           ]),
@@ -391,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         leading: Text(
-                                          parseDate(_value.date),
+                                          parseDate(value.date),
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
@@ -400,22 +398,22 @@ class _HomePageState extends State<HomePage> {
                                         trailing: Column(
                                           children: [
                                             Text(
-                                              ' ${_value.category.name}',
+                                              ' ${value.category.name}',
                                               style: TextStyle(
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500,
-                                                color: _value.type ==
+                                                color: value.type ==
                                                         CategoryType.income
                                                     ? Colors.green
                                                     : Colors.red,
                                               ),
                                             ),
                                             Text(
-                                              "₹ ${_value.amount}",
+                                              "₹ ${value.amount}",
                                               style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w500,
-                                                color: _value.type ==
+                                                color: value.type ==
                                                         CategoryType.income
                                                     ? Colors.green
                                                     : Colors.red,
@@ -438,7 +436,7 @@ class _HomePageState extends State<HomePage> {
                           itemCount: newList.length,
                         )
                       : Center(
-                          child: Container(
+                          child: SizedBox(
                               height: 130,
                               width: 130,
                               child: Lottie.asset('images/noresult.json')),
@@ -451,8 +449,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   String parseDate(DateTime date) {
-    final _date = DateFormat.MMMd().format(date);
-    final _splitedDate = _date.split(' ');
-    return '${_splitedDate.last}\n${_splitedDate.first}';
+    final date0 = DateFormat.MMMd().format(date);
+    final splitedDate = date0.split(' ');
+    return '${splitedDate.last}\n${splitedDate.first}';
   }
 }
