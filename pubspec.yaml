@@ -48,6 +48,7 @@ dependencies:
   flutter_slidable: ^3.0.0
   shared_preferences: ^2.1.0
   syncfusion_flutter_charts: ^21.1.41
+  flutter_svg: ^2.0.5
  
 
 dev_dependencies:

@@ -3,11 +3,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 
-import '../../db/category/transactions/transaction_db.dart';
+import '../../db/transactions/transaction_db.dart';
 import '../../models/category/category_model.dart';
 import '../../models/transaction/transaction_model.dart';
-import '../transaction/edit_transaction.dart';
-import '../transaction/view_Transaction.dart';
+import '../transaction/edit_transaction/edit_transaction.dart';
+import '../transaction/view_transaction/view_Transaction.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -46,6 +46,7 @@ class _SearchState extends State<Search> {
                       labelText: 'Search',
                       prefixIcon: Icon(Icons.search),
                       border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       focusColor: Colors.yellowAccent),
@@ -94,7 +95,8 @@ class _SearchState extends State<Search> {
                                           amount: _value.amount,
                                           date: _value.date,
                                           category: _value.category,
-                                          type: _value.type);
+                                          type: _value.type,
+                                          id: _value.id);
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../db/category/category_db.dart';
-import '../home/rootpage.dart';
-import 'category_add_popup.dart';
-import 'expense_category.dart';
-import 'income_category.dart';
+import '../../../db/category/category_db.dart';
+import '../../home/widgets/rootpage.dart';
+import '../widget/category_add_popup.dart';
+import '../widget/expense_category.dart';
+import '../widget/income_category.dart';
 
 class Screen_Category extends StatefulWidget {
   const Screen_Category({super.key});

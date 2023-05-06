@@ -28,7 +28,6 @@ class TransactionModel {
       required this.amount,
       required this.date,
       required this.type,
-      required this.category}) {
-    id = DateTime.now().microsecondsSinceEpoch.toString();
-  }
+      required this.category,
+      required this.id});
 }

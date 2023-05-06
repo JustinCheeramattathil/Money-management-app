@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../db/category/transactions/transaction_db.dart';
+import '../db/transactions/transaction_db.dart';
 import '../models/category/category_model.dart';
 
 ValueNotifier<double> incomeNotifier = ValueNotifier(0);

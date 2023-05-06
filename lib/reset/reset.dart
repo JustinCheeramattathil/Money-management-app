@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Account/balance.dart';
-import '../Screens/splash.dart';
+import '../Screens/splash/splash.dart';
 import '../models/category/category_model.dart';
 import '../models/transaction/transaction_model.dart';
 

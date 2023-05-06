@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../db/category/category_db.dart';
-import '../../models/category/category_model.dart';
+import '../../../db/category/category_db.dart';
+import '../../../models/category/category_model.dart';
 
 class ExpenseCategory extends StatelessWidget {
   const ExpenseCategory({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../home.dart';
-import '../Statistics/Statistics.dart';
-import '../transaction/list_transaction.dart';
-import 'widgets/bottomNavigation.dart';
+import '../home.dart';
+import '../../Statistics/Statistics.dart';
+import '../../transaction/view_transaction/list_transaction.dart';
+import 'bottomNavigation.dart';
 
 class RootPage extends StatelessWidget {
   RootPage({super.key});

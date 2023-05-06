@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gowallet/drawer/widgets/about.dart';
+import 'package:gowallet/drawer/widgets/privacy.dart';
+import 'package:gowallet/drawer/widgets/terms.dart';
 import 'package:iconly/iconly.dart';
 
-import '../Screens/category/screen%20_category.dart';
+import '../Screens/category/view/screen _category.dart';
 import '../reset/reset.dart';
 
 class DrawerPage extends StatelessWidget {
@@ -14,16 +17,25 @@ class DrawerPage extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
+            decoration: BoxDecoration(
+                gradient:
+                    LinearGradient(colors: [Colors.yellow, Colors.white])),
             child: Center(
               child: Text(
-                'GOWalleT',
+                'PollWalleT',
                 style: TextStyle(color: Colors.black, fontSize: 30),
               ),
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => TermsPage(),
+                ),
+              );
+            },
             child: ListTile(
               title: const Text("Terms and Conditions"),
               textColor: Colors.black,
@@ -36,9 +48,15 @@ class DrawerPage extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PrivacyPage(),
+                ),
+              );
+            },
             child: ListTile(
-              title: const Text("Privacy and Policy"),
+              title: const Text("Privacy Policy"),
               textColor: Colors.black,
               leading: IconButton(
                   onPressed: () {},
@@ -87,7 +105,13 @@ class DrawerPage extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AboutPage(),
+                ),
+              );
+            },
             child: ListTile(
               title: const Text("About"),
               textColor: Colors.black,

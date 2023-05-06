@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'Screens/splash.dart';
+import 'Screens/splash/splash.dart';
 import 'models/category/category_model.dart';
 import 'models/transaction/transaction_model.dart';
 

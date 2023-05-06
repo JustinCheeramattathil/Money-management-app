@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import '../../db/category/category_db.dart';
-import '../../models/category/category_model.dart';
+import '../../../db/category/category_db.dart';
+import '../../../models/category/category_model.dart';
 
 ValueNotifier<CategoryType> selectedCategoryNotifier =
     ValueNotifier(CategoryType.income);

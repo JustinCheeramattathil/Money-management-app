@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../rootpage.dart';
+import 'rootpage.dart';
 
 // class BottomNavigation extends StatelessWidget {
 //   const BottomNavigation({super.key});

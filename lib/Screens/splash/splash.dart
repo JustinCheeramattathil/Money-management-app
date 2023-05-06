@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../onboardingscreen.dart';
-import 'home/rootpage.dart';
+import '../intro_pages/onboardingscreen.dart';
+import '../home/widgets/rootpage.dart';
 
 class Splash extends StatefulWidget {
   const Splash({

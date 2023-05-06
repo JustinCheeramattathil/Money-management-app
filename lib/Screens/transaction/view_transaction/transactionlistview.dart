@@ -6,10 +6,10 @@ import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../db/category/transactions/transaction_db.dart';
-import '../../models/category/category_model.dart';
-import '../../models/transaction/transaction_model.dart';
-import 'edit_transaction.dart';
+import '../../../db/transactions/transaction_db.dart';
+import '../../../models/category/category_model.dart';
+import '../../../models/transaction/transaction_model.dart';
+import '../edit_transaction/edit_transaction.dart';
 import 'view_Transaction.dart';
 
 late var dropDownVale;
@@ -53,8 +53,10 @@ class _DropdownListState extends State<TransationListView> {
                 padding: const EdgeInsets.all(10),
                 itemBuilder: (context, index) {
                   final _value = widget.results[index];
+                  log(_value.id.toString(), name: 'valu check');
                   return GestureDetector(
                     onTap: () {
+                      log(_value.id.toString(), name: 'gesture');
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -81,8 +83,9 @@ class _DropdownListState extends State<TransationListView> {
                                 amount: _value.amount,
                                 date: _value.date,
                                 category: _value.category,
-                                type: _value.type);
-                            Navigator.push( 
+                                type: _value.type,
+                                id: _value.id);
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EditTransaction(

@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
-import '../../../models/category/category_model.dart';
-import '../../../models/transaction/transaction_model.dart';
+import '../../models/category/category_model.dart';
+import '../../models/transaction/transaction_model.dart';
 
 const TRANSACTION_DB_NAME = 'transactio-db';
 
@@ -32,11 +32,15 @@ class TransactionDB implements TransactionDbFunctions {
   @override
   Future<void> addTransaction(TransactionModel obj) async {
     final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+
     db.put(obj.id, obj);
+    log(obj.id.toString(), name: 'add');
+    refreshAll();
   }
 
   Future<void> refreshAll() async {
     final list = await accessTransactions();
+    log(list.length.toString(), name: 'refresh_list');
     list.sort((first, second) => second.date.compareTo(first.date));
     transactionListNotifietr.value.clear();
     transactionListNotifietr.value.addAll(list);
@@ -44,6 +48,7 @@ class TransactionDB implements TransactionDbFunctions {
     incomeListenable.value.clear();
     expenseListenable.value.clear();
     transationAll.value.clear();
+
     await Future.forEach(transactionListNotifietr.value,
         (TransactionModel transation) {
       if (transation.category.type == CategoryType.income) {
@@ -54,6 +59,7 @@ class TransactionDB implements TransactionDbFunctions {
       }
       transationAll.value.add(transation);
     });
+    transationAll.notifyListeners();
   }
 
   @override
@@ -73,6 +79,8 @@ class TransactionDB implements TransactionDbFunctions {
   Future<void> editTransaction(TransactionModel model) async {
     final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
     await _db.put(model.id, model);
+    log(model.id.toString(), name: 'edit');
+    refreshAll();
   }
 
   Future<void> search(String text) async {
@@ -84,10 +92,4 @@ class TransactionDB implements TransactionDbFunctions {
         .where((element) => element.purpose.contains(text)));
     transactionListNotifietr.notifyListeners();
   }
-
-
-
-
-
-  
 }

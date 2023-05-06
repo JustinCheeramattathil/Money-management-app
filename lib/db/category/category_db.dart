@@ -41,6 +41,7 @@ class CategoryDB implements CategoryDbFunctions {
 
   Future<void> refreshUI() async {
     final allCategories = await getCategories();
+    
     incomeCategoryListListener.value.clear();
     expenseCategoryListListener.value.clear();
     await Future.forEach(

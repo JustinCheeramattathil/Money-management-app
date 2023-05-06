@@ -4,15 +4,15 @@ import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
-import 'Account/balance.dart';
-import 'Screens/home/rootpage.dart';
-import 'Screens/search/search.dart';
-import 'Screens/transaction/edit_transaction.dart';
-import 'Screens/transaction/view_Transaction.dart';
-import 'db/category/transactions/transaction_db.dart';
-import 'drawer/drawerpage.dart';
-import 'models/category/category_model.dart';
-import 'models/transaction/transaction_model.dart';
+import '../../Account/balance.dart';
+import 'widgets/rootpage.dart';
+import '../search/search.dart';
+import '../transaction/edit_transaction/edit_transaction.dart';
+import '../transaction/view_transaction/view_Transaction.dart';
+import '../../db/transactions/transaction_db.dart';
+import '../../drawer/drawerpage.dart';
+import '../../models/category/category_model.dart';
+import '../../models/transaction/transaction_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'GoWalleT',
+            'PollWalleT',
             style: TextStyle(
                 fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
           ),
@@ -100,8 +100,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Text(
                             DateFormat("dd-MMMM-yyyy").format(time),
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 18),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                           ),
                           const SizedBox(
                             width: 10,
@@ -214,8 +213,7 @@ class _HomePageState extends State<HomePage> {
                                         return Text(
                                           expenseNotifier.value.toString(),
                                           style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.grey),
+                                              fontSize: 18, color: Colors.grey),
                                         );
                                       }),
                                 ],
@@ -312,7 +310,8 @@ class _HomePageState extends State<HomePage> {
                                               amount: value.amount,
                                               date: value.date,
                                               category: value.category,
-                                              type: value.type);
+                                              type: value.type,
+                                              id: value.id);
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -378,10 +377,11 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: const [
-                                            Colors.yellow,
-                                            Colors.white
-                                          ]),
+                                          gradient: LinearGradient(
+                                              colors: const [
+                                                Colors.yellow,
+                                                Colors.white
+                                              ]),
                                           borderRadius:
                                               BorderRadius.circular(20)),
                                       child: ListTile(

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../db/category/category_db.dart';
-import '../../db/category/transactions/transaction_db.dart';
+import '../../db/transactions/transaction_db.dart';
 import '../../models/category/category_model.dart';
 import '../../models/transaction/transaction_model.dart';
-import '../home/rootpage.dart';
+import '../home/widgets/rootpage.dart';
 
 class AddTransaction extends StatefulWidget {
   const AddTransaction({super.key});
@@ -28,6 +28,7 @@ class _AddTransactionState extends State<AddTransaction> {
 
   @override
   void initState() {
+    CategoryDB.instance.refreshUI();
     _selectedCategorytype = CategoryType.income;
     super.initState();
   }
@@ -45,7 +46,6 @@ class _AddTransactionState extends State<AddTransaction> {
           ),
           centerTitle: true,
           elevation: 0,
-         
         ),
         backgroundColor: Colors.yellow[300],
         body: SingleChildScrollView(
@@ -356,12 +356,11 @@ class _AddTransactionState extends State<AddTransaction> {
         amount: _parsedAmount,
         date: _selectedDate!,
         type: _selectedCategorytype!,
-        category: _selectedCategoryModel!);
+        category: _selectedCategoryModel!,
+        id: DateTime.now().millisecondsSinceEpoch.toString());
 
     await TransactionDB.instance.addTransaction(_model);
-
     RootPage.selectedIndexNotifier.value = 1;
-
     TransactionDB.instance.refreshAll();
   }
 }

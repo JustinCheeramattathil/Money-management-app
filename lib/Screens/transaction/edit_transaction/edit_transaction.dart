@@ -1,11 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../db/category/category_db.dart';
-import '../../db/category/transactions/transaction_db.dart';
-import '../../models/category/category_model.dart';
-import '../../models/transaction/transaction_model.dart';
-import '../home/rootpage.dart';
+import '../../../db/category/category_db.dart';
+import '../../../db/transactions/transaction_db.dart';
+import '../../../models/category/category_model.dart';
+import '../../../models/transaction/transaction_model.dart';
+import '../../home/widgets/rootpage.dart';
 
 class EditTransaction extends StatefulWidget {
   const EditTransaction({super.key, required this.model});
@@ -35,12 +37,14 @@ class _EditTransactionState extends State<EditTransaction> {
     _selectedDate = widget.model.date;
     _selectedCategorytype = widget.model.type;
     _selectedCategoryModel = widget.model.category;
+      log(widget.model.id.toString(),name: 'idcheck_init');
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+      log(widget.model.id.toString(),name: 'buildcon');
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -316,9 +320,8 @@ class _EditTransactionState extends State<EditTransaction> {
                           fixedSize: Size(200, 60),
                         ),
                         onPressed: () {
+                            log(widget.model.id.toString(),name: 'onpress');
                           editTransaction();
-
-                          Navigator.of(context).pop();
                         },
                         child: const Text(
                           'Submit',
@@ -356,18 +359,17 @@ class _EditTransactionState extends State<EditTransaction> {
     if (_parsedAmount == null) {
       return;
     }
+    log(widget.model.id.toString(),name: 'hjuikjnj');
 
     final _model = TransactionModel(
         purpose: _purposeText,
         amount: _parsedAmount,
         date: _selectedDate!,
         type: _selectedCategorytype!,
-        category: _selectedCategoryModel!);
+        category: _selectedCategoryModel!,
+        id: widget.model.id);
 
     await TransactionDB.instance.editTransaction(_model);
-
-    // Navigator.push(
-    //     context, MaterialPageRoute(builder: (context) => Screen_Transaction()));
     RootPage.selectedIndexNotifier.value = 1;
     Navigator.of(context).pop();
     TransactionDB.instance.refreshAll();
