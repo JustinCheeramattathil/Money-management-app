@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'Screens/splash/splash.dart';
 import 'models/category/category_model.dart';
 import 'models/transaction/transaction_model.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.yellow[300],
+    ));
+
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.yellow,
