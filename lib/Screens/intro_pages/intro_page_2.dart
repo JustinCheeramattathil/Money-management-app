@@ -32,15 +32,17 @@ class Intro2 extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Text("Money won't create success,",
-                style: GoogleFonts.italianno(fontSize: 45)),
+            Text(
+              "Money won't create success,",
+              style: GoogleFonts.italianno(fontSize: 30),
+            ),
             Text(
               "the freedom to make it will",
-              style: GoogleFonts.italianno(fontSize: 45),
+              style: GoogleFonts.italianno(fontSize: 30),
             ),
             Text(
               '-Nelson Mandela',
-              style: GoogleFonts.italianno(fontSize: 42),
+              style: GoogleFonts.italianno(fontSize: 30),
             )
           ],
         ),

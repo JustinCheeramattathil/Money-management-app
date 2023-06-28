@@ -32,7 +32,7 @@ class _Screen_TransactionState extends State<Screen_Transaction>
     super.initState();
     _tabController = TabController(vsync: this, length: 3);
     _tabController.addListener(() {
-      // results.value.clear();
+      
 
       results.value = TransactionDB().transationAll.value;
       results.notifyListeners();
@@ -101,14 +101,14 @@ class _Screen_TransactionState extends State<Screen_Transaction>
       });
     }
 
-    // Refresh the UI
+    
   }
 
   @override
   Widget build(BuildContext context) {
     // results.clear();
-    // TransactionDB.instance.refreshAll();
-    // CategoryDB.instance.refreshUI();
+    TransactionDB.instance.refreshAll();
+    CategoryDB.instance.refreshUI();
 
     return Scaffold(
         appBar: AppBar(
@@ -211,6 +211,7 @@ class _Screen_TransactionState extends State<Screen_Transaction>
                   child: TabBarView(controller: _tabController, children: [
                 TransationListView(
                   results: results.value,
+                    
                 ),
                 TransationListView(
                   results: results.value,
@@ -219,216 +220,13 @@ class _Screen_TransactionState extends State<Screen_Transaction>
                   results: results.value,
                 )
               ])),
-              // Container(
-              //   child: ValueListenableBuilder(
-              //       valueListenable:
-              //           TransactionDB.instance.transactionListNotifietr,
-              //       builder: (BuildContext context, List<TransactionModel> newList,
-              //           Widget? _) {
-              //         return Column(
-              //           children: [
-              //             Expanded(
-              //                 child: newList.isNotEmpty
-              //                     ? ListView.separated(
-              //                         padding: const EdgeInsets.all(10),
-              //                         itemBuilder: (context, index) {
-              //                           final _value = newList[index];
-              //                           return GestureDetector(
-              //                             onTap: () {
-              //                               Navigator.push(
-              //                                   context,
-              //                                   MaterialPageRoute(
-              //                                       builder: (context) =>
-              //                                           View_Transaction(
-              //                                             amount: _value.amount,
-              //                                             category:
-              //                                                 _value.category.name,
-              //                                             description:
-              //                                                 _value.purpose,
-              //                                             date: _value.date,
-              //                                           )));
-              //                             },
-              //                             child: Slidable(
-              //                               startActionPane: ActionPane(
-              //                                   motion: const StretchMotion(),
-              //                                   children: [
-              //                                     SlidableAction(
-              //                                       borderRadius:
-              //                                           BorderRadius.circular(30),
-              //                                       padding: EdgeInsets.all(8),
-              //                                       backgroundColor: Colors.yellow,
-              //                                       foregroundColor: Colors.black,
-              //                                       icon: IconlyLight.edit,
-              //                                       label: 'Edit',
-              //                                       onPressed: (context) {
-              //                                         final model =
-              //                                             TransactionModel(
-              //                                                 purpose:
-              //                                                     _value.purpose,
-              //                                                 amount: _value.amount,
-              //                                                 date: _value.date,
-              //                                                 category:
-              //                                                     _value.category,
-              //                                                 type: _value.type);
-              //                                         Navigator.push(
-              //                                             context,
-              //                                             MaterialPageRoute(
-              //                                                 builder: (context) =>
-              //                                                     EditTransaction(
-              //                                                       model: model,
-              //                                                     )));
-              //                                       },
-              //                                     ),
-              //                                     SlidableAction(
-              //                                         borderRadius:
-              //                                             BorderRadius.circular(30),
-              //                                         spacing: 8,
-              //                                         backgroundColor:
-              //                                             Colors.yellow,
-              //                                         foregroundColor: Colors.black,
-              //                                         icon: IconlyLight.delete,
-              //                                         label: 'Delete',
-              //                                         onPressed: (context) {
-              //                                           _value;
-
-              //                                           showDialog(
-              //                                               context: context,
-              //                                               builder: (BuildContext
-              //                                                   context) {
-              //                                                 return AlertDialog(
-              //                                                   title:
-              //                                                       Text('Delete'),
-              //                                                   content: Text(
-              //                                                       'Are you sure?Do you want to delete this transaction?'),
-              //                                                   actions: [
-              //                                                     TextButton(
-              //                                                         onPressed:
-              //                                                             () {
-              //                                                           Navigator.of(
-              //                                                                   context)
-              //                                                               .pop();
-              //                                                         },
-              //                                                         child: Text(
-              //                                                             'Cancel')),
-              //                                                     TextButton(
-              //                                                         onPressed:
-              //                                                             () {
-              //                                                           TransactionDB
-              //                                                               .instance
-              //                                                               .deleteTransaction(
-              //                                                                   _value.id!);
-              //                                                           Navigator.of(
-              //                                                                   context)
-              //                                                               .pop();
-              //                                                         },
-              //                                                         child: Text(
-              //                                                             'Ok'))
-              //                                                   ],
-              //                                                 );
-              //                                               });
-              //                                         })
-              //                                   ]),
-              //                               child: Card(
-              //                                 shape: RoundedRectangleBorder(
-              //                                     borderRadius:
-              //                                         BorderRadius.circular(20)),
-              //                                 child: Container(
-              //                                   decoration: BoxDecoration(
-              //                                     borderRadius:
-              //                                         BorderRadius.circular(20),
-              //                                     color: _value.type ==
-              //                                             CategoryType.income
-              //                                         ? Colors.white
-              //                                         : Colors.white,
-              //                                   ),
-              //                                   child: Container(
-              //                                     decoration: BoxDecoration(
-              //                                         gradient: LinearGradient(
-              //                                             colors: [
-              //                                               Colors.yellow,
-              //                                               Colors.white
-              //                                             ]),
-              //                                         borderRadius:
-              //                                             BorderRadius.circular(
-              //                                                 20)),
-              //                                     child: ListTile(
-              //                                       shape: RoundedRectangleBorder(
-              //                                           borderRadius:
-              //                                               BorderRadius.circular(
-              //                                                   20)),
-              //                                       leading: Text(
-              //                                         parseDate(_value.date),
-              //                                         style: TextStyle(
-              //                                             fontSize: 16,
-              //                                             fontWeight:
-              //                                                 FontWeight.w500,
-              //                                             color: Colors.black),
-              //                                       ),
-              //                                       trailing: Column(
-              //                                         children: [
-              //                                           Text(
-              //                                             ' ${_value.category.name}',
-              //                                             style: TextStyle(
-              //                                               fontSize: 15,
-              //                                               fontWeight:
-              //                                                   FontWeight.w500,
-              //                                               color: _value.type ==
-              //                                                       CategoryType
-              //                                                           .income
-              //                                                   ? Colors.green
-              //                                                   : Colors.red,
-              //                                             ),
-              //                                           ),
-              //                                           Text(
-              //                                             "₹ ${_value.amount}",
-              //                                             style: TextStyle(
-              //                                               fontSize: 20,
-              //                                               fontWeight:
-              //                                                   FontWeight.w500,
-              //                                               color: _value.type ==
-              //                                                       CategoryType
-              //                                                           .income
-              //                                                   ? Colors.green
-              //                                                   : Colors.red,
-              //                                             ),
-              //                                           ),
-              //                                         ],
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                             ),
-              //                           );
-              //                         },
-              //                         separatorBuilder: (context, index) {
-              //                           return SizedBox(
-              //                             height: 10,
-              //                           );
-              //                         },
-              //                         itemCount: newList.length,
-              //                       )
-              //                     : Center(
-              //                         child: Container(
-              //                             height: 150,
-              //                             width: 150,
-              //                             child:
-              //                                 Lottie.asset('images/noresult.json')),
-              //                       )),
-              //           ],
-              //         );
-              //       }),
-              // ),
+           
             ]),
           ),
         ));
   }
 
-  // String parseDate(DateTime date) {
-  //   final _date = DateFormat.MMMd().format(date);
-  //   final _splitedDate = _date.split(' ');
-  //   return '${_splitedDate.last}\n${_splitedDate.first}';
-  // }
+ 
 
   void filter(newValue) {
     log('filter');

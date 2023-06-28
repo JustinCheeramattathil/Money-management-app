@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 import '../../../db/category/category_db.dart';
 import '../../home/widgets/rootpage.dart';
 import '../widget/category_add_popup.dart';
@@ -88,7 +89,7 @@ class _Screen_CategoryState extends State<Screen_Category>
                   controller: _tabController,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
-                  tabs: [
+                  tabs:const [
                     Tab(
                       text: 'Income',
                     ),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:gowallet/Account/balance.dart';
 import 'package:hive/hive.dart';
 
 import '../../models/category/category_model.dart';
@@ -48,6 +49,7 @@ class TransactionDB implements TransactionDbFunctions {
     incomeListenable.value.clear();
     expenseListenable.value.clear();
     transationAll.value.clear();
+     balanceAmount();
 
     await Future.forEach(transactionListNotifietr.value,
         (TransactionModel transation) {

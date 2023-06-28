@@ -56,7 +56,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return RootPage();
-                          }));
+                          }
+                          ));
                         },
                         child: Text('Done'))
                     : GestureDetector(

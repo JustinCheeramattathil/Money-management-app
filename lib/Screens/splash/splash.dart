@@ -43,6 +43,7 @@ class _SplashState extends State<Splash> {
     );
   }
 
+
   Future<void> goToHome() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool a = prefs.getBool('check') ?? false;

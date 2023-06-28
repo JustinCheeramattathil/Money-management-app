@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'Screens/splash/splash.dart';
 import 'models/category/category_model.dart';
 import 'models/transaction/transaction_model.dart';
 import 'package:flutter/services.dart';
+
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

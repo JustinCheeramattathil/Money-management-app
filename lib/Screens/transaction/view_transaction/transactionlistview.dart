@@ -52,7 +52,8 @@ class _DropdownListState extends State<TransationListView> {
             ? ListView.separated(
                 padding: const EdgeInsets.all(10),
                 itemBuilder: (context, index) {
-                  final _value = widget.results[index];
+                  final 
+                  _value = widget.results[index];
                   log(_value.id.toString(), name: 'valu check');
                   return GestureDetector(
                     onTap: () {
