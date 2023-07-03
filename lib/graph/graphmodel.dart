@@ -32,6 +32,8 @@ chartLogic(List<TransactionModel> model) {
     if (visited[i] != -1) {
       newData.add(ChartDatas(amount: value, category: categoryname));
     }
+  
   }
   return newData;
+
 }

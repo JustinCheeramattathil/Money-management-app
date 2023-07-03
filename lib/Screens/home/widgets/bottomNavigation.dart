@@ -64,25 +64,26 @@ class _BottomNavigationState extends State<BottomNavigation> {
       valueListenable: RootPage.selectedIndexNotifier,
       builder: (BuildContext ctx, int updatedIndex, Widget? _) {
         return CurvedNavigationBar(
-          color: Color.fromARGB(255, 247, 223, 13),
-          backgroundColor: Color.fromARGB(255, 255, 242, 121),
+          color: Colors.teal,
+          backgroundColor: Colors.teal,
           animationDuration: const Duration(milliseconds: 700),
           height: 60,
           index: updatedIndex,
           onTap: (newIndex) {
             RootPage.selectedIndexNotifier.value = newIndex;
           },
-          items: <Widget>[
+          items: const <Widget>[
             Icon(
-              IconlyLight.home,
+              IconlyBold.home,
+              
               size: 20,
             ),
             Icon(
-              IconlyLight.category,
+              IconlyBold.category,
               size: 20,
             ),
             Icon(
-              IconlyLight.graph,
+              IconlyBold.graph,
               size: 20,
             ),
           ],

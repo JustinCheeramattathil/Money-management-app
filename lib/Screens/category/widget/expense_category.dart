@@ -19,10 +19,13 @@ class ExpenseCategory extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
                     child: Container(
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Colors.yellow, Colors.white])),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: ListTile(
                         title: Text(category.name),
                         trailing: IconButton(
@@ -53,8 +56,8 @@ class ExpenseCategory extends StatelessWidget {
                                 });
                           },
                           icon: const Icon(
-                            IconlyLight.delete,
-                            color: Colors.red,
+                            IconlyBold.delete,
+                            color: Colors.black,
                           ),
                         ),
                       ),

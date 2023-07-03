@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gowallet/Screens/home/widgets/rootpage.dart';
 import 'package:intl/intl.dart';
 
 class View_Transaction extends StatelessWidget {
@@ -17,25 +18,43 @@ class View_Transaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.yellow[300],
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.grey,
+          title: Text(
+            'Transaction Details',
+            style: TextStyle(
+                color: Colors.black, fontSize: 25, fontWeight: FontWeight.w800),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              )),
+        ),
         body: Center(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width * 0.9,
             decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.9),
-                    spreadRadius: 2,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(60),
-                gradient:
-                    LinearGradient(colors: [Colors.yellow, Colors.white])),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.9),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+              borderRadius: BorderRadius.circular(60),
+              gradient: LinearGradient(colors: [Colors.grey, Colors.white]),
+            ),
             child: Column(
               children: [
+                SizedBox(height: 20),
                 Text('Details',
                     style: TextStyle(
                         fontSize: 25,

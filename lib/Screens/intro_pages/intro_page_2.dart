@@ -12,7 +12,7 @@ class Intro2 extends StatelessWidget {
         decoration: BoxDecoration(gradient: LinearGradient(
             begin: Alignment.topLeft,
             // end: Alignment.bottomRight,
-            colors: [Colors.yellow, Colors.white])),
+            colors: [Colors.teal, Colors.white])),
         child: Column(
           children: [
             Center(
@@ -34,15 +34,15 @@ class Intro2 extends StatelessWidget {
             ),
             Text(
               "Money won't create success,",
-              style: GoogleFonts.italianno(fontSize: 30),
+              style: GoogleFonts.italianno(fontSize: 25),
             ),
             Text(
               "the freedom to make it will",
-              style: GoogleFonts.italianno(fontSize: 30),
+              style: GoogleFonts.italianno(fontSize: 25),
             ),
             Text(
               '-Nelson Mandela',
-              style: GoogleFonts.italianno(fontSize: 30),
+              style: GoogleFonts.italianno(fontSize: 25),
             )
           ],
         ),

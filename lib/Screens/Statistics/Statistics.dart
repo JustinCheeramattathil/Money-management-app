@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gowallet/Screens/home/widgets/rootpage.dart';
 import 'package:gowallet/db/transactions/transaction_db.dart';
 import 'package:lottie/lottie.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -40,6 +41,13 @@ class _Statistics_ScreenState extends State<Statistics_Screen>
     filterFunction();
     chartdivertFunctionExpense();
     chartdivertFunctionIncome();
+    overviewNotifier.notifyListeners();
+    incomeNotifier.notifyListeners();
+    expenseNotifier.notifyListeners();
+    todayNotifier.notifyListeners();
+    yesterdayNotifier.notifyListeners();
+    lastMonthNotifier.notifyListeners();
+    lastWeekNotifier.notifyListeners();
 
     super.initState();
   }
@@ -54,9 +62,9 @@ class _Statistics_ScreenState extends State<Statistics_Screen>
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.yellow[300],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.yellow[300],
+        backgroundColor: Colors.teal,
         title: const Text(
           'Statistics',
           style: TextStyle(
@@ -64,234 +72,246 @@ class _Statistics_ScreenState extends State<Statistics_Screen>
         ),
         elevation: 0,
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              RootPage.selectedIndexNotifier.value = 0;
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            )),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: expenseNotifier,
-        builder: (context, value, Widget? _) => Column(
-          children: [
-            SizedBox(
-              height: height * 0.039,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                bottom: 24,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/wall1.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ValueListenableBuilder(
+          valueListenable: expenseNotifier,
+          builder: (context, value, Widget? _) => Column(
+            children: [
+              SizedBox(
+                height: height * 0.039,
               ),
-              child: Material(
-                shadowColor: Colors.yellow,
-                borderRadius: BorderRadius.circular(18),
-                elevation: 10,
-                child: Container(
-                  height: height * 0.0657,
-                  width: width * 0.83,
-                  decoration: BoxDecoration(
-                      color: Colors.yellowAccent,
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 24,
+                ),
+                child: Material(
+                  shadowColor: Colors.teal,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 10,
+                  child: Container(
+                    height: height * 0.0657,
+                    width: width * 0.83,
+                    decoration: BoxDecoration(
+                      color: Colors.teal,
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 15,
-                          offset: Offset(5, 5),
-                        ),
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 15,
-                          offset: Offset(-5, -5),
-                        ),
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 10,
-                      left: 12,
                     ),
-                    child: DropdownButton<String>(
-                      isExpanded: true,
-                      underline: const Divider(
-                        color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 10,
+                        left: 12,
                       ),
-                      value: categoryId2,
-                      items: <String>[
-                        'All',
-                        'Today',
-                        'Yesterday',
-                        'This week',
-                        'month',
-                      ]
-                          .map(
-                            (e) => DropdownMenuItem(
-                              value: e,
-                              child: Text(e),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          categoryId2 = value.toString();
-                        });
-                      },
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        underline: const Divider(
+                          color: Colors.transparent,
+                        ),
+                        value: categoryId2,
+                        items: <String>[
+                          'All',
+                          'Today',
+                          'Yesterday',
+                          'This week',
+                          'month',
+                        ]
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            categoryId2 = value.toString();
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            TabBar(
-              indicator: BoxDecoration(
+              TabBar(
+                indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Colors.yellowAccent,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 15,
-                      offset: Offset(5, 5),
-                    ),
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 15,
-                      offset: Offset(-5, -5),
-                    ),
-                  ]),
-              controller: tabController,
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.black,
-              tabs: const [
-                Tab(
-                  text: 'Overview',
+                  color: Colors.teal,
                 ),
-                Tab(
-                  text: 'Income',
-                ),
-                Tab(
-                  text: 'Expense',
-                ),
-              ],
-            ),
-            SizedBox(
-              height: height * 0.0263,
-            ),
-            SizedBox(
-              width: double.maxFinite,
-              height: height * 0.526,
-              child: TabBarView(
                 controller: tabController,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(
-                      16,
-                    ),
-                    child: chartdivertFunctionOverview().isEmpty
-                        ? Center(
-                            child: Lottie.asset(
-                              'images/noresult.json',
-                              width: width * 0.9,
-                              height: height * 0.4,
-                            ),
-                          )
-                        : SfCircularChart(
-                            legend: Legend(
-                              isVisible: true,
-                              overflowMode: LegendItemOverflowMode.wrap,
-                              position: LegendPosition.bottom,
-                            ),
-                            series: <CircularSeries>[
-                              PieSeries<ChartDatas, String>(
-                                dataLabelSettings: const DataLabelSettings(
-                                  color: Colors.amberAccent,
-                                  isVisible: true,
-                                  connectorLineSettings: ConnectorLineSettings(
-                                      type: ConnectorType.curve),
-                                  overflowMode: OverflowMode.shift,
-                                  showZeroValue: false,
-                                  labelPosition: ChartDataLabelPosition.outside,
-                                ),
-                                dataSource: chartdivertFunctionOverview(),
-                                xValueMapper: (ChartDatas data, _) =>
-                                    data.category,
-                                yValueMapper: (ChartDatas data, _) =>
-                                    data.amount,
-                                explode: true,
-                              )
-                            ],
-                          ),
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.teal,
+                tabs: const [
+                  Tab(
+                    text: 'Overview',
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(
-                      16,
-                    ),
-                    child: chartdivertFunctionIncome().isEmpty
-                        ? Center(
-                            child: Lottie.asset(
-                              'images/noresult.json',
-                              width: width * 0.9,
-                              height: height * 0.4,
-                            ),
-                          )
-                        : SfCircularChart(
-                            legend: Legend(
-                              isVisible: true,
-                              overflowMode: LegendItemOverflowMode.wrap,
-                              position: LegendPosition.bottom,
-                            ),
-                            series: <CircularSeries>[
-                              PieSeries<ChartDatas, String>(
-                                dataLabelSettings: const DataLabelSettings(
-                                  isVisible: true,
-                                  connectorLineSettings: ConnectorLineSettings(
-                                      type: ConnectorType.curve),
-                                  overflowMode: OverflowMode.shift,
-                                  showZeroValue: false,
-                                  labelPosition: ChartDataLabelPosition.outside,
-                                ),
-                                dataSource: chartdivertFunctionIncome(),
-                                xValueMapper: (ChartDatas data, _) =>
-                                    data.category,
-                                yValueMapper: (ChartDatas data, _) =>
-                                    data.amount,
-                                explode: true,
-                              )
-                            ],
-                          ),
+                  Tab(
+                    text: 'Income',
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(
-                      16,
-                    ),
-                    child: chartdivertFunctionExpense().isEmpty
-                        ? Center(
-                            child: Lottie.asset(
-                              'images/noresult.json',
-                              width: width * 0.9,
-                              height: height * 0.4,
-                            ),
-                          )
-                        : SfCircularChart(
-                            legend: Legend(
-                              isVisible: true,
-                              overflowMode: LegendItemOverflowMode.wrap,
-                              position: LegendPosition.bottom,
-                            ),
-                            series: <CircularSeries>[
-                              PieSeries<ChartDatas, String>(
-                                dataLabelSettings: const DataLabelSettings(
-                                  isVisible: true,
-                                  connectorLineSettings: ConnectorLineSettings(
-                                      type: ConnectorType.curve),
-                                  overflowMode: OverflowMode.shift,
-                                  showZeroValue: false,
-                                  labelPosition: ChartDataLabelPosition.outside,
-                                ),
-                                dataSource: chartdivertFunctionExpense(),
-                                xValueMapper: (ChartDatas data, _) =>
-                                    data.category,
-                                yValueMapper: (ChartDatas data, _) =>
-                                    data.amount,
-                                explode: true,
-                              )
-                            ],
-                          ),
+                  Tab(
+                    text: 'Expense',
                   ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: height * 0.0263,
+              ),
+              SizedBox(
+                width: double.maxFinite,
+                height: height * 0.526,
+                child: TabBarView(
+                  controller: tabController,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(
+                        16,
+                      ),
+                      child: chartdivertFunctionOverview().isEmpty
+                          ? Center(
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                child: Lottie.asset(
+                                  'images/noresult.json',
+                                  width: width * 0.9,
+                                  height: height * 0.4,
+                                ),
+                              ),
+                            )
+                          : SfCircularChart(
+                              legend: Legend(
+                                isVisible: true,
+                                overflowMode: LegendItemOverflowMode.wrap,
+                                position: LegendPosition.bottom,
+                              ),
+                              series: <CircularSeries>[
+                                PieSeries<ChartDatas, String>(
+                                  dataLabelSettings: const DataLabelSettings(
+                                    color: Colors.amberAccent,
+                                    isVisible: true,
+                                    connectorLineSettings:
+                                        ConnectorLineSettings(
+                                            type: ConnectorType.curve),
+                                    overflowMode: OverflowMode.shift,
+                                    showZeroValue: false,
+                                    labelPosition:
+                                        ChartDataLabelPosition.outside,
+                                  ),
+                                  dataSource: chartdivertFunctionOverview(),
+                                  xValueMapper: (ChartDatas data, _) =>
+                                      data.category,
+                                  yValueMapper: (ChartDatas data, _) =>
+                                      data.amount,
+                                  explode: true,
+                                )
+                              ],
+                            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(
+                        16,
+                      ),
+                      child: chartdivertFunctionIncome().isEmpty
+                          ? Center(
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                child: Lottie.asset(
+                                  'images/noresult.json',
+                                  width: width * 0.9,
+                                  height: height * 0.4,
+                                ),
+                              ),
+                            )
+                          : SfCircularChart(
+                              legend: Legend(
+                                isVisible: true,
+                                overflowMode: LegendItemOverflowMode.wrap,
+                                position: LegendPosition.bottom,
+                              ),
+                              series: <CircularSeries>[
+                                PieSeries<ChartDatas, String>(
+                                  dataLabelSettings: const DataLabelSettings(
+                                    isVisible: true,
+                                    connectorLineSettings:
+                                        ConnectorLineSettings(
+                                            type: ConnectorType.curve),
+                                    overflowMode: OverflowMode.shift,
+                                    showZeroValue: false,
+                                    labelPosition:
+                                        ChartDataLabelPosition.outside,
+                                  ),
+                                  dataSource: chartdivertFunctionIncome(),
+                                  xValueMapper: (ChartDatas data, _) =>
+                                      data.category,
+                                  yValueMapper: (ChartDatas data, _) =>
+                                      data.amount,
+                                  explode: true,
+                                )
+                              ],
+                            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(
+                        16,
+                      ),
+                      child: chartdivertFunctionExpense().isEmpty
+                          ? Center(
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                child: Lottie.asset(
+                                  'images/noresult.json',
+                                  width: width * 0.9,
+                                  height: height * 0.4,
+                                ),
+                              ),
+                            )
+                          : SfCircularChart(
+                              legend: Legend(
+                                isVisible: true,
+                                overflowMode: LegendItemOverflowMode.wrap,
+                                position: LegendPosition.bottom,
+                              ),
+                              series: <CircularSeries>[
+                                PieSeries<ChartDatas, String>(
+                                  dataLabelSettings: const DataLabelSettings(
+                                    isVisible: true,
+                                    connectorLineSettings:
+                                        ConnectorLineSettings(
+                                            type: ConnectorType.curve),
+                                    overflowMode: OverflowMode.shift,
+                                    showZeroValue: false,
+                                    labelPosition:
+                                        ChartDataLabelPosition.outside,
+                                  ),
+                                  dataSource: chartdivertFunctionExpense(),
+                                  xValueMapper: (ChartDatas data, _) =>
+                                      data.category,
+                                  yValueMapper: (ChartDatas data, _) =>
+                                      data.amount,
+                                  explode: true,
+                                )
+                              ],
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

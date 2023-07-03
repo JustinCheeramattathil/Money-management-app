@@ -10,7 +10,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[300],
+      backgroundColor: Colors.teal,
       appBar: AppBar(
         title: Text('About',
             style: TextStyle(
@@ -18,32 +18,36 @@ class AboutPage extends StatelessWidget {
                 fontWeight: FontWeight.w800,
                 color: Colors.black)),
         centerTitle: true,
-        backgroundColor: Colors.yellow[300],
+        backgroundColor: Colors.teal,
         elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            )),
       ),
-      body: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.6,
-          width: MediaQuery.of(context).size.width * 0.9,
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.9),
-                  spreadRadius: 2,
-                  blurRadius: 7,
-                  offset: Offset(0, 3),
-                ),
-              ],
-              borderRadius: BorderRadius.circular(60),
-              gradient: LinearGradient(colors: [Colors.yellow, Colors.white])),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/wall1.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
           child: Column(
             children: [
+              SizedBox(
+                height: 80,
+              ),
               Text(
                 'PollWalleT',
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w800,
-                    color: Colors.black),
+                    color: Colors.teal),
               ),
               SizedBox(height: 20),
               // Text(
@@ -65,7 +69,7 @@ class AboutPage extends StatelessWidget {
                               ' is a money management app designed to help you track your expenses, create budgets, and achieve your financial goals. With our easy-to-use interface and powerful tools, you can take control of your finances and make informed decisions about your money.',
                           style: GoogleFonts.amiko(
                             // fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.teal,
                             fontSize: 16,
                           )),
                     ],

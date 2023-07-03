@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../../../db/category/category_db.dart';
 import '../../home/widgets/rootpage.dart';
 import '../widget/category_add_popup.dart';
@@ -37,77 +36,67 @@ class _Screen_CategoryState extends State<Screen_Category>
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
-        backgroundColor: Colors.yellow[300],
-        title: Padding(
-          padding: const EdgeInsets.only(left: 85),
-          child: Text(
-            'Categories',
-            style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
-          ),
+        backgroundColor: Colors.teal,
+        title: Text(
+          'Categories',
+          style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
         ),
+        centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: Colors.yellow[300],
-      floatingActionButton: Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          )
-        ]),
-        child: FloatingActionButton(
-            onPressed: () => showCategoryAddPopup(context),
-            child: Icon(Icons.add),
-            backgroundColor: Colors.yellow,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(17))),
+      backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => showCategoryAddPopup(context),
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.teal,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 35,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.9),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    )
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15.0)),
-              child: TabBar(
-                  indicator: BoxDecoration(
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(15.0)),
-                  controller: _tabController,
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.grey,
-                  tabs:const [
-                    Tab(
-                      text: 'Income',
-                    ),
-                    Tab(
-                      text: 'Expense',
-                    )
-                  ]),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/wall1.jpg'),
+            fit: BoxFit.cover,
           ),
-          Expanded(
-              child: TabBarView(
-            controller: _tabController,
-            children: [
-              IncomeCategory(),
-              ExpenseCategory(),
-            ],
-          ))
-        ],
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 35,
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(15.0)),
+                child: TabBar(
+                    indicator: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(15.0)),
+                    controller: _tabController,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.teal,
+                    tabs: const [
+                      Tab(
+                        text: 'Income',
+                      ),
+                      Tab(
+                        text: 'Expense',
+                      )
+                    ]),
+              ),
+            ),
+            Expanded(
+                child: TabBarView(
+              controller: _tabController,
+              children: [
+                IncomeCategory(),
+                ExpenseCategory(),
+              ],
+            ))
+          ],
+        ),
       ),
     );
   }
