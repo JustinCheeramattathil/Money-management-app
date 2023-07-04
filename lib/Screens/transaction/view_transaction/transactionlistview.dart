@@ -80,7 +80,7 @@ class _DropdownListState extends State<TransationListView> {
                                 SlidableAction(
                                   borderRadius: BorderRadius.circular(30),
                                   padding: EdgeInsets.all(8),
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: Colors.teal.withOpacity(0.6),
                                   foregroundColor: Colors.black,
                                   icon: IconlyLight.edit,
                                   label: 'Edit',
@@ -104,7 +104,8 @@ class _DropdownListState extends State<TransationListView> {
                                 SlidableAction(
                                     borderRadius: BorderRadius.circular(30),
                                     spacing: 8,
-                                    backgroundColor: Colors.white,
+                                    backgroundColor:
+                                        Colors.teal.withOpacity(0.6),
                                     foregroundColor: Colors.black,
                                     icon: IconlyLight.delete,
                                     label: 'Delete',
@@ -141,18 +142,17 @@ class _DropdownListState extends State<TransationListView> {
                               ]),
                           child: Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
+                                borderRadius: BorderRadius.circular(10)),
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: _value.type == CategoryType.income
-                                    ? Colors.white
-                                    : Colors.white,
-                              ),
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: _value.type == CategoryType.income
+                                      ? Colors.teal.withOpacity(0.6)
+                                      : Colors.teal.withOpacity(0.6)),
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: ListTile(
                                   shape: RoundedRectangleBorder(
@@ -164,31 +164,34 @@ class _DropdownListState extends State<TransationListView> {
                                         fontWeight: FontWeight.w500,
                                         color: Colors.black),
                                   ),
-                                  trailing: Column(
-                                    children: [
-                                      Text(
-                                        ' ${_value.category.name}',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500,
-                                          color:
-                                              _value.type == CategoryType.income
-                                                  ? Colors.green
-                                                  : Colors.red,
+                                  trailing: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          ' ${_value.category.name}',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            color: _value.type ==
+                                                    CategoryType.income
+                                                ? Colors.green
+                                                : Colors.red,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "₹ ${_value.amount}",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color:
-                                              _value.type == CategoryType.income
-                                                  ? Colors.green
-                                                  : Colors.red,
+                                        Text(
+                                          "₹ ${_value.amount}",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                            color: _value.type ==
+                                                    CategoryType.income
+                                                ? Colors.green
+                                                : Colors.red,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

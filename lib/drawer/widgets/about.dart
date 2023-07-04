@@ -16,7 +16,7 @@ class AboutPage extends StatelessWidget {
             style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w800,
-                color: Colors.black)),
+                color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.teal,
         elevation: 0,
@@ -47,7 +47,7 @@ class AboutPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w800,
-                    color: Colors.teal),
+                    color: Colors.white),
               ),
               SizedBox(height: 20),
               // Text(
@@ -63,14 +63,14 @@ class AboutPage extends StatelessWidget {
                           style: GoogleFonts.amiko(
                               // fontWeight: FontWeight.bold,
                               color: Colors.blue,
-                              fontSize: 20)),
+                              fontSize: 18)),
                       TextSpan(
                           text:
                               ' is a money management app designed to help you track your expenses, create budgets, and achieve your financial goals. With our easy-to-use interface and powerful tools, you can take control of your finances and make informed decisions about your money.',
                           style: GoogleFonts.amiko(
                             // fontWeight: FontWeight.bold,
-                            color: Colors.teal,
-                            fontSize: 16,
+                            color: Colors.white,
+                            fontSize: 12,
                           )),
                     ],
                   ),

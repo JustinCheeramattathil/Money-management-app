@@ -41,13 +41,9 @@ class _SearchState extends State<Search> {
                   child: TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                        focusedBorder: InputBorder.none,
                         labelText: 'Search',
                         prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
+                        border: InputBorder.none,
                         focusColor: Colors.yellowAccent),
                     onChanged: (purpose) {
                       TransactionDB.instance.search(purpose);
@@ -84,7 +80,8 @@ class _SearchState extends State<Search> {
                                     SlidableAction(
                                       borderRadius: BorderRadius.circular(30),
                                       padding: EdgeInsets.all(8),
-                                      backgroundColor: Colors.yellow,
+                                      backgroundColor:
+                                          Colors.teal.withOpacity(0.6),
                                       foregroundColor: Colors.black,
                                       icon: IconlyLight.edit,
                                       label: 'Edit',
@@ -108,7 +105,8 @@ class _SearchState extends State<Search> {
                                     SlidableAction(
                                         borderRadius: BorderRadius.circular(30),
                                         spacing: 8,
-                                        backgroundColor: Colors.yellow,
+                                        backgroundColor:
+                                            Colors.teal.withOpacity(0.6),
                                         foregroundColor: Colors.black,
                                         icon: IconlyLight.delete,
                                         label: 'Delete',
@@ -145,26 +143,23 @@ class _SearchState extends State<Search> {
                                   ]),
                               child: Card(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(10),
                                     color: _value.type == CategoryType.income
-                                        ? Colors.white
-                                        : Colors.white,
+                                        ? Colors.teal.withOpacity(0.6)
+                                        : Colors.teal.withOpacity(0.6),
                                   ),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        gradient: LinearGradient(colors: [
-                                          Colors.yellow,
-                                          Colors.white
-                                        ]),
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                    ),
                                     child: ListTile(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(20)),
+                                              BorderRadius.circular(10)),
                                       leading: Text(
                                         parseDate(_value.date),
                                         style: TextStyle(
@@ -172,31 +167,34 @@ class _SearchState extends State<Search> {
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black),
                                       ),
-                                      trailing: Column(
-                                        children: [
-                                          Text(
-                                            ' ${_value.category.name}',
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500,
-                                              color: _value.type ==
-                                                      CategoryType.income
-                                                  ? Colors.green
-                                                  : Colors.red,
+                                      trailing: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              ' ${_value.category.name}',
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                                color: _value.type ==
+                                                        CategoryType.income
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            "₹ ${_value.amount}",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500,
-                                              color: _value.type ==
-                                                      CategoryType.income
-                                                  ? Colors.green
-                                                  : Colors.red,
+                                            Text(
+                                              "₹ ${_value.amount}",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                                color: _value.type ==
+                                                        CategoryType.income
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

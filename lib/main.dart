@@ -8,6 +8,7 @@ import 'models/transaction/transaction_model.dart';
 import 'package:flutter/services.dart';
 
 Future<void> main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
           800: Color(0xFF000000),
           900: Color(0xFF000000),
         }),
+        
       ),
       debugShowCheckedModeBanner: false,
       home: Splash(),

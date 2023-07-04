@@ -41,14 +41,21 @@ class _Statistics_ScreenState extends State<Statistics_Screen>
     filterFunction();
     chartdivertFunctionExpense();
     chartdivertFunctionIncome();
+    expenseNotifier1.notifyListeners();
+    incomeNotifier1.notifyListeners();
     overviewNotifier.notifyListeners();
-    incomeNotifier.notifyListeners();
-    expenseNotifier.notifyListeners();
-    todayNotifier.notifyListeners();
     yesterdayNotifier.notifyListeners();
+    todayNotifier.notifyListeners();
     lastMonthNotifier.notifyListeners();
     lastWeekNotifier.notifyListeners();
-
+    incomeTodayNotifier.notifyListeners();
+    incomeYesterdayNotifier.notifyListeners();
+    incomeLastWeekNotifier.notifyListeners();
+    incomeLastMonthNotifier.notifyListeners();
+    expenseTodayNotifier.notifyListeners();
+    expenseYesterdayNotifier.notifyListeners();
+    expenseLastWeekNotifier.notifyListeners();
+    expenseLastMonthNotifier.notifyListeners();
     super.initState();
   }
 
@@ -152,7 +159,7 @@ class _Statistics_ScreenState extends State<Statistics_Screen>
                 ),
                 controller: tabController,
                 labelColor: Colors.black,
-                unselectedLabelColor: Colors.teal,
+                unselectedLabelColor: Colors.white,
                 tabs: const [
                   Tab(
                     text: 'Overview',

@@ -72,7 +72,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.teal,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -80,12 +80,12 @@ class _AddTransactionState extends State<AddTransaction> {
                     controller: _purposeTextEditingController,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      focusedBorder: InputBorder.none,
+                      border: InputBorder.none,
                       fillColor: Colors.teal,
                       labelText: 'Description',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                      // border: OutlineInputBorder(
+                      //     borderSide: BorderSide(color: Colors.transparent),
+                      //     borderRadius: BorderRadius.circular(20)),
                     ),
                   ),
                 ),
@@ -95,7 +95,7 @@ class _AddTransactionState extends State<AddTransaction> {
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.teal,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -103,24 +103,24 @@ class _AddTransactionState extends State<AddTransaction> {
                     controller: _amountTextEditingController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      focusedBorder: InputBorder.none,
+                      border: InputBorder.none,
                       labelText: 'amount',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                      // border: OutlineInputBorder(
+                      //   borderRadius: BorderRadius.circular(20),
+                      // ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.075,
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.teal),
+                    color: Colors.white),
                 child: Theme(
                   data: Theme.of(context).copyWith(
                     colorScheme: Theme.of(context).colorScheme.copyWith(
@@ -169,14 +169,14 @@ class _AddTransactionState extends State<AddTransaction> {
                         height: MediaQuery.of(context).size.height * 0.1,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.teal,
+                          color: Colors.green,
                         ),
                         child: Column(
                           children: [
                             Radio(
                                 value: CategoryType.income,
                                 groupValue: _selectedCategorytype,
-                                activeColor: Colors.black,
+                                activeColor: Colors.white,
                                 onChanged: (newValue) {
                                   setState(() {
                                     _selectedCategorytype = CategoryType.income;
@@ -185,7 +185,7 @@ class _AddTransactionState extends State<AddTransaction> {
                                 }),
                             Text(
                               'Income',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: Colors.white),
                             ),
                           ],
                         ),
@@ -198,14 +198,14 @@ class _AddTransactionState extends State<AddTransaction> {
                         height: MediaQuery.of(context).size.height * 0.1,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.teal,
+                          color: Colors.red,
                         ),
                         child: Column(
                           children: [
                             Radio(
                                 value: CategoryType.expense,
                                 groupValue: _selectedCategorytype,
-                                activeColor: Colors.black,
+                                activeColor: Colors.white,
                                 onChanged: (newValue) {
                                   setState(() {
                                     _selectedCategorytype =
@@ -215,7 +215,7 @@ class _AddTransactionState extends State<AddTransaction> {
                                 }),
                             const Text(
                               'Expense',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: Colors.white),
                             ),
                           ],
                         ),
@@ -224,10 +224,10 @@ class _AddTransactionState extends State<AddTransaction> {
                   ),
                   SizedBox(width: 30),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.24,
                     width: MediaQuery.of(context).size.width * 0.5,
                     decoration: BoxDecoration(
-                        color: Colors.teal,
+                        color: Colors.white,
                         // border: Border.all(color: Colors.black),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
@@ -308,7 +308,7 @@ class _AddTransactionState extends State<AddTransaction> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      backgroundColor: Colors.teal,
+                      backgroundColor: Colors.teal[700],
                       fixedSize: Size(200, 60),
                     ),
                     onPressed: () {
@@ -318,7 +318,7 @@ class _AddTransactionState extends State<AddTransaction> {
                     },
                     child: const Text(
                       'Submit',
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ),
                 ),

@@ -15,7 +15,7 @@ class TermsPage extends StatelessWidget {
         title: Text(
           'Terms and Conditions',
           style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+              fontSize: 25, fontWeight: FontWeight.w800, color: Colors.white),
         ),
         centerTitle: true,
         elevation: 0,
@@ -35,26 +35,27 @@ class TermsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Text(
-                  'Welcome to our money management application. These terms and conditions govern your use of our application. By using our application, you agree to these terms and conditions. If you do not agree to these terms and conditions, you may not use our application.',
-                  style: GoogleFonts.amiko(fontSize: 12)),
+                'Welcome to our money management application. These terms and conditions govern your use of our application. By using our application, you agree to these terms and conditions. If you do not agree to these terms and conditions, you may not use our application.',
+                style: GoogleFonts.amiko(fontSize: 12, color: Colors.white),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Text(
                   'To use our application, you must create an account. You agree to provide accurate and complete information when creating your account. You are responsible for maintaining the security of your account and password. You agree to notify us immediately if you suspect any unauthorized use of your account.',
-                  style: GoogleFonts.amiko(fontSize: 12)),
+                  style: GoogleFonts.amiko(fontSize: 12, color: Colors.white)),
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Text(
                   'You are solely responsible for any content that you upload or post on our application. You agree that you will not post any content that is unlawful, defamatory, harassing, or otherwise objectionable. We reserve the right to remove any content that violates these terms and conditions.',
-                  style: GoogleFonts.amiko(fontSize: 12)),
+                  style: GoogleFonts.amiko(fontSize: 12, color: Colors.white)),
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Text(
                   'Our application is intended for personal use only. You may not use our application for any commercial purpose or in a way that violates any laws or regulations.',
-                  style: GoogleFonts.amiko(fontSize: 12)),
+                  style: GoogleFonts.amiko(fontSize: 12, color: Colors.white)),
             ),
           ],
         ),

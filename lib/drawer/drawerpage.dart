@@ -34,7 +34,7 @@ class DrawerPage extends StatelessWidget {
               child: Center(
                 child: Text(
                   'PollWalleT',
-                  style: TextStyle(color: Colors.teal, fontSize: 30),
+                  style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
               ),
             ),
@@ -48,12 +48,12 @@ class DrawerPage extends StatelessWidget {
               },
               child: ListTile(
                 title: const Text("Terms and Conditions"),
-                textColor: Colors.teal,
+                textColor: Colors.white,
                 leading: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       IconlyLight.paper_negative,
-                      color: Colors.teal,
+                      color: Colors.white,
                     )),
               ),
             ),
@@ -67,12 +67,12 @@ class DrawerPage extends StatelessWidget {
               },
               child: ListTile(
                 title: const Text("Privacy Policy"),
-                textColor: Colors.teal,
+                textColor: Colors.white,
                 leading: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       IconlyLight.lock,
-                      color: Colors.teal,
+                      color: Colors.white,
                     )),
               ),
             ),
@@ -86,12 +86,12 @@ class DrawerPage extends StatelessWidget {
               },
               child: ListTile(
                 title: const Text("Categories"),
-                textColor: Colors.teal,
+                textColor: Colors.white,
                 leading: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       IconlyLight.paper_plus,
-                      color: Colors.teal,
+                      color: Colors.white,
                     )),
               ),
             ),
@@ -105,12 +105,12 @@ class DrawerPage extends StatelessWidget {
               },
               child: ListTile(
                 title: const Text("Reset"),
-                textColor: Colors.teal,
+                textColor: Colors.white,
                 leading: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       IconlyLight.arrow_left_circle,
-                      color: Colors.teal,
+                      color: Colors.white,
                     )),
               ),
             ),
@@ -124,16 +124,24 @@ class DrawerPage extends StatelessWidget {
               },
               child: ListTile(
                 title: const Text("About"),
-                textColor: Colors.teal,
+                textColor: Colors.white,
                 leading: IconButton(
                   onPressed: () {},
                   icon: const Icon(
                     IconlyLight.profile,
-                    color: Colors.teal,
+                    color: Colors.white,
                   ),
                 ),
               ),
             ),
+            SizedBox(
+              height: 100,
+            ),
+            Center(
+                child: Text(
+              'v.1.0.1',
+              style: TextStyle(color: Colors.white),
+            )),
           ],
         ),
       ),

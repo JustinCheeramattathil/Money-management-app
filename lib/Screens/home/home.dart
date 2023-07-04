@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:gowallet/chart_function/chart_function.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -26,6 +27,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    expenseNotifier1.notifyListeners();
+    incomeNotifier1.notifyListeners();
+    overviewNotifier.notifyListeners();
+    yesterdayNotifier.notifyListeners();
+    todayNotifier.notifyListeners();
+    lastMonthNotifier.notifyListeners();
+    lastWeekNotifier.notifyListeners();
+    incomeTodayNotifier.notifyListeners();
+    incomeYesterdayNotifier.notifyListeners();
+    incomeLastWeekNotifier.notifyListeners();
+    incomeLastMonthNotifier.notifyListeners();
+    expenseTodayNotifier.notifyListeners();
+    expenseYesterdayNotifier.notifyListeners();
+    expenseLastWeekNotifier.notifyListeners();
+    expenseLastMonthNotifier.notifyListeners();
     super.initState();
   }
 
@@ -77,8 +93,7 @@ class _HomePageState extends State<HomePage> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  gradient: LinearGradient(
-                      colors: const [Colors.teal, Colors.white, Colors.teal]),
+                  color: Colors.teal.withOpacity(0.6),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -93,14 +108,17 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(IconlyLight.calendar),
+                            Icon(
+                              IconlyBold.calendar,
+                              color: Colors.white,
+                            ),
                             SizedBox(
                               width: 8,
                             ),
                             Text(
                               DateFormat("dd-MMMM-yyyy").format(time),
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 18),
+                                  TextStyle(color: Colors.white, fontSize: 18),
                             ),
                             const SizedBox(
                               width: 10,
@@ -136,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                                   totalNotifier.value.toString(),
                                   style: TextStyle(
                                       fontSize: 40,
-                                      color: Colors.grey,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ],
@@ -182,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                                         style: TextStyle(
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 18,
-                                            color: Colors.grey),
+                                            color: Colors.white),
                                       );
                                     }),
                               ],
@@ -214,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                                             expenseNotifier.value.toString(),
                                             style: TextStyle(
                                                 fontSize: 18,
-                                                color: Colors.grey),
+                                                color: Colors.white),
                                           );
                                         }),
                                   ],
@@ -305,7 +323,8 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(30),
                                           padding: EdgeInsets.all(8),
-                                          backgroundColor: Colors.white,
+                                          backgroundColor:
+                                              Colors.teal.withOpacity(0.6),
                                           foregroundColor: Colors.black,
                                           icon: IconlyBold.edit,
                                           label: 'Edit',
@@ -330,7 +349,8 @@ class _HomePageState extends State<HomePage> {
                                             borderRadius:
                                                 BorderRadius.circular(30),
                                             spacing: 8,
-                                            backgroundColor: Colors.white,
+                                            backgroundColor:
+                                                Colors.teal.withOpacity(0.6),
                                             foregroundColor: Colors.black,
                                             icon: IconlyBold.delete,
                                             label: 'Delete',
@@ -374,23 +394,23 @@ class _HomePageState extends State<HomePage> {
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                            BorderRadius.circular(10)),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(10),
                                         color: value.type == CategoryType.income
-                                            ? Colors.white
-                                            : Colors.white,
+                                            ? Colors.teal.withOpacity(0.6)
+                                            : Colors.teal.withOpacity(0.6),
                                       ),
                                       child: Container(
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
-                                                BorderRadius.circular(20)),
+                                                BorderRadius.circular(10)),
                                         child: ListTile(
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(20)),
+                                                  BorderRadius.circular(10)),
                                           leading: Text(
                                             parseDate(value.date),
                                             style: TextStyle(
@@ -398,31 +418,36 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.black),
                                           ),
-                                          trailing: Column(
-                                            children: [
-                                              Text(
-                                                ' ${value.category.name}',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: value.type ==
-                                                          CategoryType.income
-                                                      ? Colors.green
-                                                      : Colors.red,
+                                          trailing: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  ' ${value.category.name}',
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: value.type ==
+                                                            CategoryType.income
+                                                        ? Color.fromARGB(
+                                                            255, 27, 131, 31)
+                                                        : Colors.red,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                "₹ ${value.amount}",
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: value.type ==
-                                                          CategoryType.income
-                                                      ? Colors.green
-                                                      : Colors.red,
+                                                Text(
+                                                  "₹ ${value.amount}",
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: value.type ==
+                                                            CategoryType.income
+                                                        ? Color.fromARGB(
+                                                            255, 27, 131, 31)
+                                                        : Colors.red,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

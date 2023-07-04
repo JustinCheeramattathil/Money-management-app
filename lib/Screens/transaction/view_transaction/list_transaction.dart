@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gowallet/Screens/home/widgets/rootpage.dart';
+import 'package:gowallet/chart_function/chart_function.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 
@@ -39,6 +40,21 @@ class _Screen_TransactionState extends State<Screen_Transaction>
         filter(dropDownVale);
       });
       results.notifyListeners();
+      expenseNotifier1.notifyListeners();
+      incomeNotifier1.notifyListeners();
+      overviewNotifier.notifyListeners();
+      yesterdayNotifier.notifyListeners();
+      todayNotifier.notifyListeners();
+      lastMonthNotifier.notifyListeners();
+      lastWeekNotifier.notifyListeners();
+      incomeTodayNotifier.notifyListeners();
+      incomeYesterdayNotifier.notifyListeners();
+      incomeLastWeekNotifier.notifyListeners();
+      incomeLastMonthNotifier.notifyListeners();
+      expenseTodayNotifier.notifyListeners();
+      expenseYesterdayNotifier.notifyListeners();
+      expenseLastWeekNotifier.notifyListeners();
+      expenseLastMonthNotifier.notifyListeners();
     });
   }
 
@@ -156,7 +172,7 @@ class _Screen_TransactionState extends State<Screen_Transaction>
                   child: DropdownButton(
                       icon: const Icon(
                         Icons.filter_list_alt,
-                        color: Colors.teal,
+                        color: Colors.white,
                       ),
                       underline: Container(),
                       elevation: 0,
@@ -184,7 +200,7 @@ class _Screen_TransactionState extends State<Screen_Transaction>
                     color: Colors.teal,
                   ),
                   labelColor: Colors.black,
-                  unselectedLabelColor: Colors.teal,
+                  unselectedLabelColor: Colors.white,
                   tabs: const [
                     Tab(
                       text: 'Overview',
