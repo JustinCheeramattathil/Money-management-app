@@ -49,11 +49,11 @@ class _EditTransactionState extends State<EditTransaction> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.teal,
+          backgroundColor: Color.fromARGB(255, 20, 8, 5),
           title: Text(
             'New Transaction',
             style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.white),
           ),
           centerTitle: true,
           elevation: 0,
@@ -63,8 +63,8 @@ class _EditTransactionState extends State<EditTransaction> {
                 Navigator.of(context).pop();
               },
               icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
+                Icons.arrow_back,
+                color: Colors.white,
               )),
         ),
         backgroundColor: Colors.white,
@@ -81,7 +81,7 @@ class _EditTransactionState extends State<EditTransaction> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 168, 144, 138),
                     borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -101,7 +101,7 @@ class _EditTransactionState extends State<EditTransaction> {
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 168, 144, 138),
                     borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -123,7 +123,7 @@ class _EditTransactionState extends State<EditTransaction> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.white),
+                    color: Color.fromARGB(255, 168, 144, 138)),
                 child: Theme(
                   data: Theme.of(context).copyWith(
                     colorScheme: Theme.of(context).colorScheme.copyWith(
@@ -230,7 +230,7 @@ class _EditTransactionState extends State<EditTransaction> {
                     height: MediaQuery.of(context).size.height * 0.24,
                     width: MediaQuery.of(context).size.width * 0.5,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 168, 144, 138),
                         // border: Border.all(color: Colors.black),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
@@ -288,7 +288,7 @@ class _EditTransactionState extends State<EditTransaction> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      backgroundColor: Colors.teal[700],
+                      backgroundColor: Color.fromARGB(255, 20, 8, 5),
                       fixedSize: Size(200, 60),
                     ),
                     onPressed: () {

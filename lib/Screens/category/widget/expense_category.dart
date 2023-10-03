@@ -23,7 +23,7 @@ class ExpenseCategory extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20)),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 168, 144, 138),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: ListTile(

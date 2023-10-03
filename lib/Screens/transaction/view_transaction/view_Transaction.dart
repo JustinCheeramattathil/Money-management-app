@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gowallet/Screens/home/widgets/rootpage.dart';
 import 'package:intl/intl.dart';
 
 class View_Transaction extends StatelessWidget {
@@ -20,7 +19,7 @@ class View_Transaction extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.teal,
+          backgroundColor: Color.fromARGB(255, 20, 8, 5),
           title: Text(
             'Transaction Details',
             style: TextStyle(
@@ -36,100 +35,92 @@ class View_Transaction extends StatelessWidget {
                 color: Colors.black,
               )),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/wall1.jpg'),
-              fit: BoxFit.cover,
+        body: Center(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width * 0.9,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(60),
+              color: Colors.teal.withOpacity(0.6),
             ),
-          ),
-          child: Center(
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.6,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(60),
-                color: Colors.teal.withOpacity(0.6),
-              ),
-              child: Column(
-                children: [
-                  SizedBox(height: 20),
-                  Text('Details',
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                Text('Details',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white)),
+                SizedBox(height: 40),
+                Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.note_add,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    title: Text(
+                      'Notes :${description}',
                       style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white)),
-                  SizedBox(height: 40),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.note_add,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      title: Text(
-                        'Notes :${description}',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.currency_rupee,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      title: Text(
-                        'Amount :${amount}',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.currency_rupee,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    title: Text(
+                      'Amount :${amount}',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.calendar_month,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      title: Text(
-                        'Date :${parseDate(date)}',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.calendar_month,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    title: Text(
+                      'Date :${parseDate(date)}',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.dashboard,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      title: Text(
-                        'Category :${category}',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.dashboard,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    title: Text(
+                      'Category :${category}',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ));

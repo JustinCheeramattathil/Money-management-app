@@ -25,7 +25,7 @@ class Intro2 extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     // color: Colors.amber,
                   ),
-                  child: Lottie.asset('images/money2.json'),
+                  child: Lottie.asset('assets/images/money2.json'),
                 ),
               ),
             ),

@@ -33,14 +33,14 @@ class _Screen_CategoryState extends State<Screen_Category>
               Navigator.of(context).pop();
             },
             icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
+              Icons.arrow_back,
+              color: Colors.white,
             )),
-        backgroundColor: Colors.teal,
+        backgroundColor: Color.fromARGB(255, 20, 8, 5),
         title: Text(
           'Categories',
           style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+              fontSize: 25, fontWeight: FontWeight.w800, color: Colors.white),
         ),
         centerTitle: true,
         elevation: 0,
@@ -50,53 +50,45 @@ class _Screen_CategoryState extends State<Screen_Category>
         onPressed: () => showCategoryAddPopup(context),
         child: Icon(
           Icons.add,
-          color: Colors.black,
+          color: Colors.white,
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Color.fromARGB(255, 20, 8, 5),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/wall1.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 35,
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(15.0)),
-                child: TabBar(
-                    indicator: BoxDecoration(
-                        color: Colors.teal,
-                        borderRadius: BorderRadius.circular(15.0)),
-                    controller: _tabController,
-                    labelColor: Colors.black,
-                    unselectedLabelColor: Colors.teal,
-                    tabs: const [
-                      Tab(
-                        text: 'Income',
-                      ),
-                      Tab(
-                        text: 'Expense',
-                      )
-                    ]),
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(15.0)),
+              child: TabBar(
+                  indicator: BoxDecoration(
+                      color: Color.fromARGB(255, 168, 144, 138),
+                      borderRadius: BorderRadius.circular(15.0)),
+                  controller: _tabController,
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Color.fromARGB(255, 168, 144, 138),
+                  tabs: const [
+                    Tab(
+                      text: 'Income',
+                    ),
+                    Tab(
+                      text: 'Expense',
+                    )
+                  ]),
             ),
-            Expanded(
-                child: TabBarView(
-              controller: _tabController,
-              children: [
-                IncomeCategory(),
-                ExpenseCategory(),
-              ],
-            ))
-          ],
-        ),
+          ),
+          Expanded(
+              child: TabBarView(
+            controller: _tabController,
+            children: [
+              IncomeCategory(),
+              ExpenseCategory(),
+            ],
+          ))
+        ],
       ),
     );
   }

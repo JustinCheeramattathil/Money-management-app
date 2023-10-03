@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gowallet/Screens/home/widgets/rootpage.dart';
 import 'package:gowallet/chart_function/chart_function.dart';
-import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 
 import '../../../db/category/category_db.dart';
@@ -125,12 +124,12 @@ class _Screen_TransactionState extends State<Screen_Transaction>
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal,
+          backgroundColor: Color.fromARGB(255, 20, 8, 5),
           elevation: 0,
           title: Text(
             'Transactions',
             style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.white),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -138,8 +137,8 @@ class _Screen_TransactionState extends State<Screen_Transaction>
                 RootPage.selectedIndexNotifier.value = 0;
               },
               icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
+                Icons.arrow_back,
+                color: Colors.white,
               )),
         ),
         backgroundColor: Colors.white,
@@ -150,86 +149,78 @@ class _Screen_TransactionState extends State<Screen_Transaction>
             },
             child: Icon(
               Icons.add,
-              color: Colors.black,
+              color: Colors.white,
             ),
-            backgroundColor: Colors.teal,
+            backgroundColor: Color.fromARGB(255, 20, 8, 5),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30))),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/wall1.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: ValueListenableBuilder(
-            valueListenable: TransactionDB.instance.transationAll,
-            builder: (context, value, child) => ValueListenableBuilder(
-              valueListenable: results,
-              builder: (context, value, child) => Column(children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 250.0, right: 5),
-                  child: DropdownButton(
-                      icon: const Icon(
-                        Icons.filter_list_alt,
-                        color: Colors.white,
-                      ),
-                      underline: Container(),
-                      elevation: 0,
-                      borderRadius: BorderRadius.circular(10),
-                      items: items.map((e) {
-                        return DropdownMenuItem(
-                          value: e,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(e),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        if (newValue == 'month') {
-                          _selectDate(context);
-                        }
-                        filter(newValue);
-                      }),
-                ),
-                TabBar(
-                  controller: _tabController,
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.teal,
-                  ),
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.white,
-                  tabs: const [
-                    Tab(
-                      text: 'Overview',
+        body: ValueListenableBuilder(
+          valueListenable: TransactionDB.instance.transationAll,
+          builder: (context, value, child) => ValueListenableBuilder(
+            valueListenable: results,
+            builder: (context, value, child) => Column(children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 250.0, right: 5),
+                child: DropdownButton(
+                    icon: const Icon(
+                      Icons.filter_list_alt,
+                      color: Colors.white,
                     ),
-                    Tab(
-                      text: 'Income',
-                    ),
-                    Tab(
-                      text: 'Expense',
-                    ),
-                  ],
+                    underline: Container(),
+                    elevation: 0,
+                    borderRadius: BorderRadius.circular(10),
+                    items: items.map((e) {
+                      return DropdownMenuItem(
+                        value: e,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(e),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      if (newValue == 'month') {
+                        _selectDate(context);
+                      }
+                      filter(newValue);
+                    }),
+              ),
+              TabBar(
+                controller: _tabController,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color.fromARGB(255, 20, 8, 5),
                 ),
-                const SizedBox(
-                  height: 20,
+                labelColor: Colors.white,
+                unselectedLabelColor: Color.fromARGB(255, 20, 8, 5),
+                tabs: const [
+                  Tab(
+                    text: 'Overview',
+                  ),
+                  Tab(
+                    text: 'Income',
+                  ),
+                  Tab(
+                    text: 'Expense',
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                  child: TabBarView(controller: _tabController, children: [
+                TransationListView(
+                  results: results.value,
                 ),
-                Expanded(
-                    child: TabBarView(controller: _tabController, children: [
-                  TransationListView(
-                    results: results.value,
-                  ),
-                  TransationListView(
-                    results: results.value,
-                  ),
-                  TransationListView(
-                    results: results.value,
-                  )
-                ])),
-              ]),
-            ),
+                TransationListView(
+                  results: results.value,
+                ),
+                TransationListView(
+                  results: results.value,
+                )
+              ])),
+            ]),
           ),
         ));
   }

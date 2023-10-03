@@ -40,11 +40,11 @@ class _AddTransactionState extends State<AddTransaction> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.teal,
+          backgroundColor: Color.fromARGB(255, 20, 8, 5),
           title: Text(
             'New Transaction',
             style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.black),
+                fontSize: 25, fontWeight: FontWeight.w800, color: Colors.white),
           ),
           centerTitle: true,
           elevation: 0,
@@ -54,277 +54,261 @@ class _AddTransactionState extends State<AddTransaction> {
                 Navigator.of(context).pop();
               },
               icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
+                Icons.arrow_back,
+                color: Colors.white,
               )),
         ),
         backgroundColor: Colors.white,
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/wall1.jpg'),
-              fit: BoxFit.cover,
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 168, 144, 138),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _purposeTextEditingController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    fillColor: Colors.teal,
+                    labelText: 'Description',
+                  ),
+                ),
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _purposeTextEditingController,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      fillColor: Colors.teal,
-                      labelText: 'Description',
-                      // border: OutlineInputBorder(
-                      //     borderSide: BorderSide(color: Colors.transparent),
-                      //     borderRadius: BorderRadius.circular(20)),
-                    ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 168, 144, 138),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _amountTextEditingController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'amount',
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _amountTextEditingController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      labelText: 'amount',
-                      // border: OutlineInputBorder(
-                      //   borderRadius: BorderRadius.circular(20),
-                      // ),
-                    ),
-                  ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.075,
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(255, 168, 144, 138)),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  colorScheme: Theme.of(context).colorScheme.copyWith(
+                        primary: Colors.black,
+                      ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.075,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white),
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                    colorScheme: Theme.of(context).colorScheme.copyWith(
-                          primary: Colors.black,
-                        ),
-                  ),
-                  child: TextButton.icon(
-                    onPressed: () async {
-                      final _selectedDateTemp = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate:
-                            DateTime.now().subtract(const Duration(days: 30)),
-                        lastDate: DateTime.now(),
-                      );
+                child: TextButton.icon(
+                  onPressed: () async {
+                    final _selectedDateTemp = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate:
+                          DateTime.now().subtract(const Duration(days: 30)),
+                      lastDate: DateTime.now(),
+                    );
 
-                      if (_selectedDateTemp == null) {
-                        return;
-                      } else {
-                        print(_selectedDate.toString());
-                        setState(() {
-                          _selectedDate = _selectedDateTemp;
-                        });
-                      }
-                    },
-                    icon: const Icon(
-                      Icons.calendar_month,
-                      color: Colors.black,
-                    ),
-                    label: Text(
-                      _selectedDate == null
-                          ? 'Select Date'
-                          : DateFormat("dd-MMMM-yyyy").format(_selectedDate!),
-                      style: const TextStyle(color: Colors.black),
-                    ),
+                    if (_selectedDateTemp == null) {
+                      return;
+                    } else {
+                      print(_selectedDate.toString());
+                      setState(() {
+                        _selectedDate = _selectedDateTemp;
+                      });
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.calendar_month,
+                    color: Colors.black,
+                  ),
+                  label: Text(
+                    _selectedDate == null
+                        ? 'Select Date'
+                        : DateFormat("dd-MMMM-yyyy").format(_selectedDate!),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ),
-              SizedBox(height: 30),
-              Row(
-                children: [
-                  Column(
+            ),
+            SizedBox(height: 30),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.green,
+                      ),
+                      child: Column(
+                        children: [
+                          Radio(
+                              value: CategoryType.income,
+                              groupValue: _selectedCategorytype,
+                              activeColor: Colors.white,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedCategorytype = CategoryType.income;
+                                  _categoryID = null;
+                                });
+                              }),
+                          Text(
+                            'Income',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red,
+                      ),
+                      child: Column(
+                        children: [
+                          Radio(
+                              value: CategoryType.expense,
+                              groupValue: _selectedCategorytype,
+                              activeColor: Colors.white,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedCategorytype = CategoryType.expense;
+                                  _categoryID = null;
+                                });
+                              }),
+                          const Text(
+                            'Expense',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 30),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.24,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 168, 144, 138),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
                     children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.green,
-                        ),
-                        child: Column(
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: Row(
                           children: [
-                            Radio(
-                                value: CategoryType.income,
-                                groupValue: _selectedCategorytype,
-                                activeColor: Colors.white,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedCategorytype = CategoryType.income;
-                                    _categoryID = null;
-                                  });
-                                }),
-                            Text(
-                              'Income',
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Text("Add Category"),
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => Screen_Category(),
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(
+                                  Icons.add,
+                                  color: Colors.black,
+                                )),
                           ],
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 50,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.red,
-                        ),
-                        child: Column(
-                          children: [
-                            Radio(
-                                value: CategoryType.expense,
-                                groupValue: _selectedCategorytype,
-                                activeColor: Colors.white,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedCategorytype =
-                                        CategoryType.expense;
-                                    _categoryID = null;
-                                  });
-                                }),
-                            const Text(
-                              'Expense',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
+                      Center(
+                        child: DropdownButton<String>(
+                          underline: Container(),
+                          hint: const Text(
+                            'Select Category',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          value: _categoryID,
+                          items: (_selectedCategorytype == CategoryType.income
+                                  ? CategoryDB().incomeCategoryListListener
+                                  : CategoryDB().expenseCategoryListListener)
+                              .value
+                              .map((e) {
+                            return DropdownMenuItem(
+                              value: e.id,
+                              child: Text(
+                                e.name,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onTap: () {
+                                print(e.toString());
+                                _selectedCategoryModel = e;
+                              },
+                            );
+                          }).toList(),
+                          onChanged: (selectedValue) {
+                            print(selectedValue);
+                            setState(() {
+                              _categoryID = selectedValue;
+                            });
+                          },
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(width: 30),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.24,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        // border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25),
-                          child: Row(
-                            children: [
-                              Text("Add Category"),
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => Screen_Category(),
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(
-                                    Icons.add,
-                                    color: Colors.black,
-                                  )),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Center(
-                          child: DropdownButton<String>(
-                            underline: Container(),
-                            hint: const Text(
-                              'Select Category',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            value: _categoryID,
-                            items: (_selectedCategorytype == CategoryType.income
-                                    ? CategoryDB().incomeCategoryListListener
-                                    : CategoryDB().expenseCategoryListListener)
-                                .value
-                                .map((e) {
-                              return DropdownMenuItem(
-                                value: e.id,
-                                child: Text(
-                                  e.name,
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                onTap: () {
-                                  print(e.toString());
-                                  _selectedCategoryModel = e;
-                                },
-                              );
-                            }).toList(),
-                            onChanged: (selectedValue) {
-                              print(selectedValue);
-                              setState(() {
-                                _categoryID = selectedValue;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 70,
+            ),
+            Center(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.1,
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                    backgroundColor: Color.fromARGB(255, 20, 8, 5),
+                    fixedSize: Size(200, 60),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 70,
-              ),
-              Center(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      backgroundColor: Colors.teal[700],
-                      fixedSize: Size(200, 60),
-                    ),
-                    onPressed: () {
-                      addTransaction();
+                  onPressed: () {
+                    addTransaction();
 
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
-              )
-            ]),
-          ),
+              ),
+            )
+          ]),
         ));
   }
 

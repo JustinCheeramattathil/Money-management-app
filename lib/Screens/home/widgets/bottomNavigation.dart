@@ -63,28 +63,33 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return ValueListenableBuilder(
       valueListenable: RootPage.selectedIndexNotifier,
       builder: (BuildContext ctx, int updatedIndex, Widget? _) {
-        return CurvedNavigationBar(
-          color: Colors.teal,
-          backgroundColor: Colors.teal,
-          animationDuration: const Duration(milliseconds: 700),
-          height: 60,
-          index: updatedIndex,
+        return BottomNavigationBar(
+          selectedItemColor: Color.fromARGB(255, 20, 8, 5),
+          currentIndex: updatedIndex,
           onTap: (newIndex) {
             RootPage.selectedIndexNotifier.value = newIndex;
           },
-          items: const <Widget>[
-            Icon(
-              IconlyBold.home,
-              
-              size: 20,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                IconlyBold.home,
+                size: 20,
+              ),
+              label: 'Home',
             ),
-            Icon(
-              IconlyBold.category,
-              size: 20,
+            BottomNavigationBarItem(
+              icon: Icon(
+                IconlyBold.category,
+                size: 20,
+              ),
+              label: 'Transactions',
             ),
-            Icon(
-              IconlyBold.graph,
-              size: 20,
+            BottomNavigationBarItem(
+              icon: Icon(
+                IconlyBold.graph,
+                size: 20,
+              ),
+              label: 'Statistics',
             ),
           ],
         );

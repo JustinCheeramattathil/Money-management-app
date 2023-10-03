@@ -20,7 +20,7 @@ class Intro1 extends StatelessWidget {
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50))),
             child: Container(
-              child: Lottie.asset('images/pig.json'),
+              child: Lottie.asset('assets/images/pig.json'),
             ),
           ),
           SizedBox(

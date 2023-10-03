@@ -34,7 +34,7 @@ class _SplashState extends State<Splash> {
         decoration: BoxDecoration(color: Colors.white),
         child: Center(
           child: Container(
-            child: Lottie.asset('images/loading3.json'),
+            child: Lottie.asset('assets/images/loading3.json'),
             height: 300,
             width: 300,
           ),
